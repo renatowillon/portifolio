@@ -138,20 +138,26 @@ export default function Home() {
         categoria2="ReactJS"
         imagem="/assets/capa-port.png"
         />
-        <Projetos
-        titulo="Projeto Portfolio"
-        descricao="Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae fugiat doloremque ipsam iure fugit autem, qui veniam laboriosam, officiis quam maxime dolores ducimus omnis voluptatibus repellat molestias minus! Dolore, tempora."
-        categoria1="Typescript"
-        categoria2="ReactJS"
-        imagem="/assets/capa-port.png"
-        />
-        <Projetos
-        titulo="Projeto Portfolio"
-        descricao="Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae fugiat doloremque ipsam iure fugit autem, qui veniam laboriosam, officiis quam maxime dolores ducimus omnis voluptatibus repellat molestias minus! Dolore, tempora."
-        categoria1="Typescript"
-        categoria2="ReactJS"
-        imagem="/assets/capa-port.png"
-        />
+        
+        <a href="https://github.com/renatowillon/NLW-Notes" target="_blank">
+          <Projetos
+          titulo="Notes"
+          descricao="Notes é um projeto que foi realizado junto a NLW com a Rocketseat para armazenamento de notas, salvando notas via audio que faz a conversão para o texto de forma otimizada, como também salvando a nota em texto, salvando em localstorage, e podendo apagar caso necessario."
+          categoria1="Typescript"
+          categoria2="ViteJS"
+          imagem="/assets/capa-notes.png"
+          />
+        </a>
+        
+        <a href="https://github.com/renatowillon/wDev-Spotify" target="_blank">
+          <Projetos
+          titulo="Spotify"
+          descricao="Feito a replicação do Spotify Web, Spotify é um provedor sueco de serviços de mídia e streaming de áudio fundado em 23 de abril de 2006 por Daniel Ek e Martin Lorentzon. É um dos maiores provedores de serviços de streaming de música, com mais de 602 milhões de usuários ativos mensais."
+          categoria1="Typescript"
+          categoria2="NexJS"
+          imagem="/assets/capa-spotify.png"
+          />
+        </a>
         
       </div>
 

@@ -6,11 +6,12 @@ interface ProjetosProps{
     categoria1: string
     categoria2: string
     imagem: string
+    url?: string
 }
 
-export function Projetos ({ titulo, descricao, categoria1, categoria2, imagem }: ProjetosProps){
+export function Projetos ({ titulo, descricao, categoria1, categoria2, imagem, url }: ProjetosProps){
     return(
-        <div className="flex flex-col p-5 gap-3 border border-indigo-800 w-full h-[50vh] rounded-lg overflow-hidden">
+        <div className="flex flex-col p-5 gap-3 border border-indigo-800 w-full h-[50vh] rounded-lg overflow-hidden justify-between">
             <strong className="text-2xl text-indigo-200">{titulo}</strong>
             <span className="text-xs text-indigo-300">{descricao}</span>
             <div className="flex gap-3">
