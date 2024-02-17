@@ -22,5 +22,6 @@ export function Projetos ({ titulo, descricao, categoria1, categoria2, imagem, u
                 <Image src={imagem} alt={titulo} width={500} height={500} />
             </div>        
         </div>
-    )
+
+)
 }

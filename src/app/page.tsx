@@ -4,13 +4,15 @@ import { Projetos } from "@/components/projetos"
 import { ChevronUp, HomeIcon } from "lucide-react"
 import { Menu } from "@/components/menu"
 
+
 export default function Home() {
   return (
     
     <div className="h-screen flex flex-col md:p-10 p-5">
       <a href="#top" className="size-10 rounded-full bg-indigo-400 flex items-center justify-center pb-1 text-indigo-950 fixed bottom-6 right-6"><ChevronUp /></a>
-      
-      <Menu />
+      <section id="top">
+        <Menu />
+      </section>
     
     <div className="flex-row md:flex md:items-center md:justify-between  md:px-20 py-10"> 
       <div className="flex flex-col gap-4">
@@ -124,21 +126,7 @@ export default function Home() {
       </div>
       
       <div className="grid md:grid-cols-4 px-10 py-10 gap-5 justify-items-center">
-        <Projetos
-        titulo="Projeto Portfolio"
-        descricao="Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae fugiat doloremque ipsam iure fugit autem, qui veniam laboriosam, officiis quam maxime dolores ducimus omnis voluptatibus repellat molestias minus! Dolore, tempora."
-        categoria1="Typescript"
-        categoria2="ReactJS"
-        imagem="/assets/capa-port.png"
-        />
-        <Projetos
-        titulo="Projeto Portfolio"
-        descricao="Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae fugiat doloremque ipsam iure fugit autem, qui veniam laboriosam, officiis quam maxime dolores ducimus omnis voluptatibus repellat molestias minus! Dolore, tempora."
-        categoria1="Typescript"
-        categoria2="ReactJS"
-        imagem="/assets/capa-port.png"
-        />
-        
+                
         <a href="https://github.com/renatowillon/NLW-Notes" target="_blank">
           <Projetos
           titulo="Notes"
