@@ -127,7 +127,7 @@ export default function Home() {
       
       <div className="grid md:grid-cols-4 px-10 py-10 gap-5 justify-items-center">
                 
-        <a href="https://github.com/renatowillon/NLW-Notes" target="_blank">
+        
           <Projetos
           titulo="Notes"
           descricao="Notes é um projeto que foi realizado junto a NLW com a Rocketseat para armazenamento de notas, salvando notas via audio que faz a conversão para o texto de forma otimizada, como também salvando a nota em texto, salvando em localstorage, e podendo apagar caso necessario."
@@ -135,7 +135,7 @@ export default function Home() {
           categoria2="ViteJS"
           imagem="/assets/capa-notes.png"
           />
-        </a>
+        
         
         <a href="https://github.com/renatowillon/wDev-Spotify" target="_blank">
           <Projetos
