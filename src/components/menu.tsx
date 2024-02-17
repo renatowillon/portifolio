@@ -5,7 +5,7 @@ export function Menu(){
       <div className="text-indigo-300 flex items-center text-sm font-normal gap-5">
           <a href="#" className="hover:text-indigo-500 hover:font-semibold">Home</a>
           <a href="#sobre" className="hover:text-indigo-500 hover:font-semibold">Sobre mim</a>
-          <a href="#" className="hover:text-indigo-500 hover:font-semibold">Portfólio</a>
+          <a href="#jobs" className="hover:text-indigo-500 hover:font-semibold">Portfólio</a>
           <a href="#" className="hover:text-indigo-500 hover:font-semibold">Skills</a>
           <a href="#" className="hover:text-indigo-500 hover:font-semibold">Carreira</a>
           <a href="#" className="hover:text-indigo-500 hover:font-semibold">Contato</a>

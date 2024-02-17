@@ -3,26 +3,33 @@
 import Image from "next/image"
 import * as Dialog from '@radix-ui/react-dialog';
 import { Wrench, X } from "lucide-react";
+import { FaGitAlt, FaRankingStar, FaRegStar } from "react-icons/fa6";
 
 interface ProjetosProps{
     titulo: string
     descricao: string
-    categoria1: string
-    categoria2: string
+    categoria1?: string
+    categoria2?: string
+    categoria3?: string
+    categoria4?: string
     imagem: string
     url?: string
 }
 
-export function Projetos ({ titulo, descricao, categoria1, categoria2, imagem, url }: ProjetosProps){
+export function Projetos ({ titulo, descricao, categoria1, categoria2, imagem, categoria3, categoria4, url }: ProjetosProps){
     return(
     <Dialog.Root>
-        <Dialog.Trigger className="flex flex-col p-5 gap-3 border border-indigo-800 w-full h-[50vh] rounded-lg overflow-hidden justify-between">
+        <Dialog.Trigger className="flex flex-col p-5 gap-3 border border-indigo-800 w-full h-[350px] rounded-lg overflow-hidden">
             <strong className="text-2xl text-indigo-200">{titulo}</strong>
             <span className="text-xs text-indigo-300">{descricao}</span>
-            <div className="flex gap-3">
+            
+            <div className="w-full grid grid-cols-2 gap-2">
                 <span className="p-1 bg-indigo-900 text-indigo-500 flex items-center justify-center rounded-lg px-2 font-semibold">{categoria1}</span>
                 <span className="p-1 bg-indigo-900 text-indigo-500 flex items-center justify-center rounded-lg px-2 font-semibold">{categoria2}</span>
+                <span className="p-1 bg-indigo-900 text-indigo-500 flex items-center justify-center rounded-lg px-2 font-semibold">{categoria3}</span>
+                <span className="p-1 bg-indigo-900 text-indigo-500 flex items-center justify-center rounded-lg px-2 font-semibold">{categoria4}</span>
             </div>
+            
             <div className="flex items-center justify-center">
                 <Image src={imagem} alt={titulo} width={500} height={500} />
             </div>        
@@ -35,21 +42,32 @@ export function Projetos ({ titulo, descricao, categoria1, categoria2, imagem, u
                     <X className="size-7"/>
                 </Dialog.Close>
 
-                <div className="w-full h-full grid md:grid-cols-2 p-3">
-                    <div className="grid grid-rows-10">
-                        <div className="flex flex-col row-span-8 p-5">
-                            <strong className="text-4xl text-indigo-200 pb-3">{titulo}</strong>
-                            <span className="text-md text-indigo-300 p-3">{descricao}</span>
+                <div className="w-full h-full grid md:grid-cols-2">
+                    <div className="flex flex-col p-7 gap-4">
+                        <div className="flex flex-col gap-4">
+                            <strong className="text-4xl text-indigo-200">{titulo}</strong>
+                            <span className="text-md text-indigo-300 text-center">{descricao}</span>
                         </div>
-                        <div className="row-span-1">parte estrelas</div>
-                        <div className="row-span-1">linguagem</div>
+                        <div className="flex flex-row gap-2 items-center justify-center"><FaRegStar fill="#c7d2fe" /><FaRegStar fill="#c7d2fe" /><FaRegStar fill="#c7d2fe" /><FaRankingStar size={40} fill="#c7d2fe" /><FaRegStar fill="#c7d2fe" /><FaRegStar fill="#c7d2fe" /><FaRegStar fill="#c7d2fe" /></div>
+                        <div className="grid grid-cols-2 gap-2">
+                            <span className="p-1 py-2 bg-indigo-900 text-indigo-200 text-sm flex items-center justify-center rounded-lg px-2 font-semibold">{categoria1}</span>
+                            <span className="p-1 py-2 bg-indigo-900 text-indigo-200 text-sm flex items-center justify-center rounded-lg px-2 font-semibold">{categoria2}</span>
+                            <span className="p-1 py-2 bg-indigo-900 text-indigo-200 text-sm flex items-center justify-center rounded-lg px-2 font-semibold">{categoria3}</span>
+                            <span className="p-1 py-2 bg-indigo-900 text-indigo-200 text-sm flex items-center justify-center rounded-lg px-2 font-semibold">{categoria4}</span>
+                        </div>
+                        
+                        <a href={url} target="_blank" className="flex flex-row gap-2 bg-indigo-900 text-indigo-200 text-md font-semibold py-2 px-6 rounded-lg items-center justify-center"><FaGitAlt size={25} /> Repositório</a>
+                    
                     </div>
-                    <div className="p-7 grid grid-cols-2 items-center justify-items-center">
+                    <div className="grid md:grid-cols-2 grid-cols-1 items-center justify-items-center p-10">
                         <div className="w-full h-full border border-indigo-300 flex items-center justify-center text-indigo-300 hover:bg-black/60">FOTO</div>
                         <div className="w-full h-full border border-indigo-300 flex items-center justify-center text-indigo-300 hover:bg-black/60">FOTO</div>
                         <div className="w-full h-full border border-indigo-300 flex items-center justify-center text-indigo-300 hover:bg-black/60">FOTO</div>
                         <div className="w-full h-full border border-indigo-300 flex items-center justify-center text-indigo-300 hover:bg-black/60">FOTO</div>
+                    
                     </div>
+
+                    
                 </div>
 
             </Dialog.Content>

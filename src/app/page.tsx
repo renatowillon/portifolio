@@ -45,7 +45,7 @@ export default function Home() {
         
         <div className="w-64 md:w-48 flex flex-col items-center border border-indigo-900 rounded-lg p-5">
           <div className="text-indigo-800"><FaCode size={50}/></div>
-          <span className="text-sm font-thin mt-2">estudando</span>
+          <span className="text-sm font-thin mt-2">estudante de</span>
           <strong className="text-2xl">Programação</strong>
         </div>
         
@@ -110,7 +110,7 @@ export default function Home() {
         </section> 
       </div>    
 
-      <div className="md:flex items-center justify-between md:px-20 px-10">
+      <div className="md:flex items-center justify-between md:px-20 px-5">
         <div className="flex flex-col items-start justify-start">
           <span className="bg-indigo-950 text-indigo-500 font-bold px-4 py-1 rounded-lg">🔗 Portfólio</span>
           <span className="text-indigo-300 text-5xl font-bold pt-5">Trabalhos e Projetos</span>
@@ -125,7 +125,7 @@ export default function Home() {
 
       </div>
       
-      <div className="grid md:grid-cols-4 px-10 py-10 gap-5 justify-items-center">
+      <section id="jobs" className="grid md:grid-cols-3 px-5 py-10 gap-5 justify-items-center">
                 
         
           <Projetos
@@ -133,7 +133,10 @@ export default function Home() {
           descricao="Notes é um projeto que foi realizado junto a NLW com a Rocketseat para armazenamento de notas, salvando notas via audio que faz a conversão para o texto de forma otimizada, como também salvando a nota em texto, salvando em localstorage, e podendo apagar caso necessario."
           categoria1="Typescript"
           categoria2="ViteJS"
+          categoria3="Tailwind css"
+          categoria4="Radix-UI"
           imagem="/assets/capa-notes.png"
+          url="https://github.com/renatowillon/NLW-Notes"
           />
         
         
@@ -141,11 +144,14 @@ export default function Home() {
           titulo="Spotify"
           descricao="Feito a replicação do Spotify Web, Spotify é um provedor sueco de serviços de mídia e streaming de áudio fundado em 23 de abril de 2006 por Daniel Ek e Martin Lorentzon. É um dos maiores provedores de serviços de streaming de música, com mais de 602 milhões de usuários ativos mensais."
           categoria1="Typescript"
-          categoria2="NexJS"
+          categoria2="NextJS"
+          categoria3="Tailwind CSS"
+          categoria4="Lucide"
           imagem="/assets/capa-spotify.png"
+          url="https://github.com/renatowillon/wDev-Spotify"
           />
         
-      </div>
+      </section>
 
     </div>
   )
