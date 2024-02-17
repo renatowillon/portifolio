@@ -137,7 +137,6 @@ export default function Home() {
           />
         
         
-        <a href="https://github.com/renatowillon/wDev-Spotify" target="_blank">
           <Projetos
           titulo="Spotify"
           descricao="Feito a replicação do Spotify Web, Spotify é um provedor sueco de serviços de mídia e streaming de áudio fundado em 23 de abril de 2006 por Daniel Ek e Martin Lorentzon. É um dos maiores provedores de serviços de streaming de música, com mais de 602 milhões de usuários ativos mensais."
@@ -145,7 +144,6 @@ export default function Home() {
           categoria2="NexJS"
           imagem="/assets/capa-spotify.png"
           />
-        </a>
         
       </div>
 
