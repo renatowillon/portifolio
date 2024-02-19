@@ -3,13 +3,15 @@ import { FaInstagram, FaGithub, FaLinkedin, FaWhatsapp, FaCode, FaBoxesStacked, 
 import { Projetos } from "@/components/projetos"
 import { ChevronUp, HomeIcon } from "lucide-react"
 import { Menu } from "@/components/menu"
+import { Skills } from "@/components/Skills"
+import { Contato } from "@/components/Contato"
 
 
 export default function Home() {
   return (
     
     <div className="h-screen flex flex-col md:p-10 p-5">
-      <a href="#top" className="size-10 rounded-full bg-indigo-400 flex items-center justify-center pb-1 text-indigo-950 fixed bottom-6 right-6"><ChevronUp /></a>
+      <a href="#" className="size-10 rounded-full bg-indigo-400 flex items-center justify-center pb-1 text-indigo-950 fixed bottom-6 right-6"><ChevronUp /></a>
       <section id="top">
         <Menu />
       </section>
@@ -31,7 +33,7 @@ export default function Home() {
       <div className="flex items-center justify-center">
         <Image src="/assets/icons/avatar-renato-temp.svg" width={400} height={400} alt="Avatar" />
       </div>
-      <a href="https://api.whatsapp.com/send?phone=5583988332659" className="py-2 px-3 mt-10 md:mt-0 border border-indigo-800 rounded-lg text-indigo-800 flex items-center justify-center gap-3 hover:brightness-200 transition-all duration-500">
+      <a href="https://api.whatsapp.com/send?phone=5583988332659" target="_blank" className="py-2 px-3 mt-10 md:mt-0 border border-indigo-800 rounded-lg text-indigo-800 flex items-center justify-center gap-3 hover:brightness-200 transition-all duration-500">
         <FaWhatsapp />Vamos conversar
       </a>
 
@@ -154,6 +156,14 @@ export default function Home() {
           url="https://github.com/renatowillon/wDev-Spotify"
           />
         
+      </section>
+
+      <section id="skills" className="w-full md:px-96 px-3 flex flex-col items-center justify-center border-y border-indigo-900">
+        <Skills />
+      </section>
+
+      <section id="contato" className="flex items-center justify-center py-10">
+        <Contato />
       </section>
 
     </div>

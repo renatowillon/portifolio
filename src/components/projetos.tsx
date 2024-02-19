@@ -24,10 +24,10 @@ export function Projetos ({ titulo, descricao, categoria1, categoria2, imagem, c
             <span className="text-xs text-indigo-300">{descricao}</span>
             
             <div className="w-full grid grid-cols-2 gap-2">
-                <span className="p-1 bg-indigo-900 text-indigo-500 flex items-center justify-center rounded-lg px-2 font-semibold">{categoria1}</span>
-                <span className="p-1 bg-indigo-900 text-indigo-500 flex items-center justify-center rounded-lg px-2 font-semibold">{categoria2}</span>
-                <span className="p-1 bg-indigo-900 text-indigo-500 flex items-center justify-center rounded-lg px-2 font-semibold">{categoria3}</span>
-                <span className="p-1 bg-indigo-900 text-indigo-500 flex items-center justify-center rounded-lg px-2 font-semibold">{categoria4}</span>
+                <span className="p-1 bg-indigo-900 text-indigo-500 flex items-center justify-center rounded-lg px-2 font-semibold hover:text-indigo-300 hover:bg-indigo-950/95 transition-all duration-300">{categoria1}</span>
+                <span className="p-1 bg-indigo-900 text-indigo-500 flex items-center justify-center rounded-lg px-2 font-semibold hover:text-indigo-300 hover:bg-indigo-950/95 transition-all duration-300">{categoria2}</span>
+                <span className="p-1 bg-indigo-900 text-indigo-500 flex items-center justify-center rounded-lg px-2 font-semibold hover:text-indigo-300 hover:bg-indigo-950/95 transition-all duration-300">{categoria3}</span>
+                <span className="p-1 bg-indigo-900 text-indigo-500 flex items-center justify-center rounded-lg px-2 font-semibold hover:text-indigo-300 hover:bg-indigo-950/95 transition-all duration-300">{categoria4}</span>
             </div>
             
             <div className="flex items-center justify-center">
