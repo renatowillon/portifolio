@@ -29,9 +29,9 @@ export default function Home() {
         </div>
       </div>
       <div className="flex items-center justify-center">
-        <Image src="/assets/avatar-renato-temp.svg" width={400} height={400} alt="Avatar" />
+        <Image src="/assets/icons/avatar-renato-temp.svg" width={400} height={400} alt="Avatar" />
       </div>
-      <a href="https://api.whatsapp.com/send?phone=5583988332659" className="py-2 px-3 mt-10 md:mt-0 border border-indigo-800 rounded-lg text-indigo-800 flex items-center justify-center gap-3 hover:brightness-200">
+      <a href="https://api.whatsapp.com/send?phone=5583988332659" className="py-2 px-3 mt-10 md:mt-0 border border-indigo-800 rounded-lg text-indigo-800 flex items-center justify-center gap-3 hover:brightness-200 transition-all duration-500">
         <FaWhatsapp />Vamos conversar
       </a>
 
@@ -91,11 +91,14 @@ export default function Home() {
           
       <div className="flex flex-col items-center justify-center py-6 md:grid md:grid-cols-5 md:gap-10 md:p-10">
         <div className="flex items-center justify-center col-span-2">
-          <Image src="/assets/avatar-renato-temp.svg" alt="Renato Willon" width={300} height={300} />
+          <Image src="/assets/icons/avatar-renato-temp.svg" alt="Renato Willon" width={300} height={300} />
         </div>
         
         <section id="sobre" className="md:flex md:flex-col md:justify-center md:col-span-3 md:gap-4 md:my-0 my-5">
-          <div className="bg-indigo-950 rounded-lg py-2 px-3 flex items-center justify-center text-indigo-500 font-bold">🧐 Sobre mim</div>
+          <div className="bg-indigo-950 relative rounded-lg py-2 px-3 flex items-center justify-center text-indigo-500 font-bold">
+          <Image className="absolute mt-36 ml-56" src="assets/icons/seta-baixo.svg" alt="Seta" width={100} height={100} />Sobre mim
+          </div>
+          
           <div className="text-indigo-300 text-3xl font-bold md:my-0 my-5">Renato Willon</div>
           
           <div className="flex flex-col">
@@ -118,9 +121,9 @@ export default function Home() {
         </div>
         
         <div className="md:flex md:flex-row md:gap-5 md:items-center md:justify-center md:mt-0 mt-5 flex flex-col gap-3">
-          <div className="border border-indigo-950 py-2 px-14 rounded-lg text-indigo-800 font-bold flex gap-3 items-center"><Image src="/assets/React.svg" alt="React" width={20} height={20} />ReactJS</div>
-          <div className="bg-indigo-950 py-2 px-14 rounded-lg text-indigo-500 font-bold flex gap-3 items-center"><FaPalette />Design</div>
-          <div className="border border-indigo-950 py-2 px-14 rounded-lg text-indigo-800 font-bold flex gap-3 items-center"><Image className="" src="/assets/Typescript.svg" alt="Typescript" width={20} height={20} />Typescript</div>
+          <div className="border border-indigo-950 py-2 px-14 rounded-lg text-indigo-800 font-bold flex gap-3 items-center justify-center"><Image src="/assets/icons/React.svg" alt="React" width={20} height={20} />ReactJS</div>
+          <div className="bg-indigo-950 py-2 px-14 rounded-lg text-indigo-500 font-bold flex gap-3 items-center justify-center"><FaPalette />Design</div>
+          <div className="border border-indigo-950 py-2 px-14 rounded-lg text-indigo-800 font-bold flex gap-3 items-center justify-center"><Image className="" src="/assets/icons/Typescript.svg" alt="Typescript" width={20} height={20} />Typescript</div>
         </div>
 
       </div>
