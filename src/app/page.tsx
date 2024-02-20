@@ -5,12 +5,14 @@ import { ChevronUp, HomeIcon } from "lucide-react"
 import { Menu } from "@/components/menu"
 import { Skills } from "@/components/Skills"
 import { Contato } from "@/components/Contato"
-
+import { Toaster } from 'sonner'
+import { Footer } from "@/components/Footer"
 
 export default function Home() {
   return (
     
     <div className="h-screen flex flex-col md:p-10 p-5">
+      <Toaster richColors position="bottom-center" />
       <a href="#" className="size-10 rounded-full bg-indigo-400 flex items-center justify-center pb-1 text-indigo-950 fixed bottom-6 right-6"><ChevronUp /></a>
       <section id="top">
         <Menu />
@@ -25,9 +27,9 @@ export default function Home() {
         </div>
         <div className="text-lg text-zinc-500 font-semibold flex items-center justify-center">Front-end developer · UI designer</div>
         <div className="flex items-center justify-center gap-8">
-          <a href="https://github.com/renatowillon/"  ><FaGithub size={30}/></a>
-          <a href="https://www.linkedin.com/in/renato-willon-414ba155/" ><FaLinkedin size={30}/></a>
-          <a href="https://instagram.com/renatowillon/" ><FaInstagram size={30}/></a>
+          <a href="https://github.com/renatowillon/" target="_blank"><FaGithub size={30}/></a>
+          <a href="https://www.linkedin.com/in/renato-willon-414ba155/" target="_blank"><FaLinkedin size={30}/></a>
+          <a href="https://instagram.com/renatowillon/" target="_blank"><FaInstagram size={30}/></a>
         </div>
       </div>
       <div className="flex items-center justify-center">
@@ -138,7 +140,7 @@ export default function Home() {
           descricao="Notes é um projeto que foi realizado junto a NLW com a Rocketseat para armazenamento de notas, salvando notas via audio que faz a conversão para o texto de forma otimizada, como também salvando a nota em texto, salvando em localstorage, e podendo apagar caso necessario."
           categoria1="Typescript"
           categoria2="ViteJS"
-          categoria3="Tailwind css"
+          categoria3="Tailwind CSS"
           categoria4="Radix-UI"
           imagem="/assets/capa-notes.png"
           url="https://github.com/renatowillon/NLW-Notes"
@@ -166,6 +168,13 @@ export default function Home() {
         <Contato />
       </section>
 
+      <div className="">
+        <Footer />
+      </div>  
+
     </div>
+    
+
+    
   )
 }

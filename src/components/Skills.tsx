@@ -12,7 +12,7 @@ export function Skills (){
             
             
             <span className="text-sm font-thin text-indigo-400 mb-7">Techs usadas nos em projetos                       </span>
-            <div className="flex flex-row mb-4 gap-3">
+            <div className="grid grid-cols-5 md:flex md:flex-row mb-4 gap-3">
                 <Image src="assets/icons/white/white_React.svg" alt="Titulo" width={w} height={h} />
                 <Image src="assets/icons/white/white_Javascript.svg" alt="Titulo" width={w} height={h} />
                 <Image src="assets/icons/white/white_vitejs.svg" alt="Titulo" width={w} height={h} />
