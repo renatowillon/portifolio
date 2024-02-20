@@ -6,7 +6,9 @@ import { Toaster, toast } from 'sonner'
 let email = "renatowillon@hotmail.com"
 function copyTexto(){
     navigator.clipboard.writeText(email).then(() => {
-    toast.success('Copiado!')
+    toast.info('👋Oii, ao clicar no email uma mágica acontece')
+    toast.success('Email copiado 😁!')
+    
 })
 }
 
@@ -25,8 +27,8 @@ export function Contato() {
            
             <div className="flex flex-col items-center justify-center gap-3">
                 <div className="flex  gap-2 text-indigo-800 text-base font-semibold"><FaRegPaperPlane size={25} fill="#3730a3" /> E-mail:</div>
-                <div className="text-zinc-600 text-xl">renatowillon@hotmail.com</div>
-                <button onClick={copyTexto} className="hover:text-indigo-400"><FaRegCopy size={30} fill="#3730a3" /></button>
+                <a href="mailto:renatowillon@hotmail.com" className="text-zinc-600 text-xl">renatowillon@hotmail.com</a>
+                <button onClick={copyTexto} className="font-semibold text-indigo-800 flex gap-1"><FaRegCopy size={30} fill="#3730a3" />copiar</button>
             </div>
         </div>
         

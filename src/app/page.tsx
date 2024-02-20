@@ -12,7 +12,7 @@ export default function Home() {
   return (
     
     <div className="h-screen flex flex-col md:p-10 p-5">
-      <Toaster richColors position="bottom-center" />
+      <Toaster richColors expand={true} closeButton position="bottom-center" />
       <a href="#" className="size-10 rounded-full bg-indigo-400 flex items-center justify-center pb-1 text-indigo-950 fixed bottom-6 right-6"><ChevronUp /></a>
       <section id="top">
         <Menu />
