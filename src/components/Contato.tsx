@@ -7,7 +7,7 @@ let email = "renatowillon@hotmail.com"
 function copyTexto(){
     navigator.clipboard.writeText(email).then(() => {
     toast.info('👋Oii, ao clicar no email uma mágica acontece')
-    toast.success('Email copiado 😁!')
+    toast.success('Email copiado! 😁')
     
 })
 }

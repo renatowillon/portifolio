@@ -5,6 +5,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { Wrench, X } from "lucide-react";
 import { FaGitAlt, FaRankingStar, FaRegStar } from "react-icons/fa6";
 
+
 interface ProjetosProps{
     titulo: string
     descricao: string
@@ -13,10 +14,14 @@ interface ProjetosProps{
     categoria3?: string
     categoria4?: string
     imagem: string
-    url?: string
+    url1: string
+    url2?: string
+    url3?: string
+    url4?: string
+    repositorio?: string
 }
 
-export function Projetos ({ titulo, descricao, categoria1, categoria2, imagem, categoria3, categoria4, url }: ProjetosProps){
+export function Projetos ({ titulo, descricao, categoria1, categoria2, imagem, categoria3, categoria4, url1, url2, url3, url4, repositorio }: ProjetosProps){
     return(
     <Dialog.Root>
         <Dialog.Trigger className="flex flex-col p-5 gap-3 border border-indigo-800 w-full h-[350px] rounded-lg overflow-hidden">
@@ -56,17 +61,26 @@ export function Projetos ({ titulo, descricao, categoria1, categoria2, imagem, c
                             <span className="p-1 py-2 bg-indigo-900 text-indigo-200 text-sm flex items-center justify-center rounded-lg px-2 font-semibold">{categoria4}</span>
                         </div>
                         
-                        <a href={url} target="_blank" className="flex flex-row gap-2 bg-indigo-900 text-indigo-200 text-md font-semibold py-2 px-6 rounded-lg items-center justify-center"><FaGitAlt size={25} /> Repositório</a>
+                        <a href={repositorio} target="_blank" className="flex flex-row gap-2 bg-indigo-900 text-indigo-200 text-md font-semibold py-2 px-6 rounded-lg items-center justify-center"><FaGitAlt size={25} /> Repositório</a>
                     
                     </div>
-                    <div className="grid md:grid-cols-2 grid-cols-1 items-center justify-items-center p-10">
-                        <div className="w-full h-full border border-indigo-300 flex items-center justify-center text-indigo-300 hover:bg-black/60">FOTO</div>
-                        <div className="w-full h-full border border-indigo-300 flex items-center justify-center text-indigo-300 hover:bg-black/60">FOTO</div>
-                        <div className="w-full h-full border border-indigo-300 flex items-center justify-center text-indigo-300 hover:bg-black/60">FOTO</div>
-                        <div className="w-full h-full border border-indigo-300 flex items-center justify-center text-indigo-300 hover:bg-black/60">FOTO</div>
+                <Dialog.Root>
+                    <Dialog.Trigger>
+                        <div className="flex items-center justify-center p-10 target:fixed target:w-1/2 target:top-4 target:left-1/4">
+                            <Image src={url1} alt={titulo} height={700} width={700} />
+                        </div>
+                    </Dialog.Trigger>
                     
-                    </div>
-
+                    <Dialog.Portal>
+                        <Dialog.Overlay className="inset-0 fixed bg-black/50" />
+                        <Dialog.Content className="fixed inset-0 md:inset-auto md:left-1/2 overflow-hidden md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 max-w-[980px] w-full md:h-[80vh] bg-white-950/90 md:rounded-md flex flex-col outline-none">
+                            <Dialog.Close className="absolute right-0 top-0 p-1.5 text-indigo-400 hover:text-indigo-100">
+                                <X className="size-7"/>
+                            </Dialog.Close>
+                                <div className="w-full h-full flex items-center justify-center"><Image src={url1} alt={titulo} height={700} width={700} /></div>
+                        </Dialog.Content>
+                    </Dialog.Portal>
+                </Dialog.Root>    
                     
                 </div>
 

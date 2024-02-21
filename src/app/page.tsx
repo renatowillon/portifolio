@@ -143,7 +143,8 @@ export default function Home() {
           categoria3="Tailwind CSS"
           categoria4="Radix-UI"
           imagem="/assets/capa-notes.png"
-          url="https://github.com/renatowillon/NLW-Notes"
+          repositorio="https://github.com/renatowillon/NLW-Notes"
+          url1="/assets/img_projects/macbook_notes.png"
           />
         
         
@@ -155,7 +156,8 @@ export default function Home() {
           categoria3="Tailwind CSS"
           categoria4="Lucide"
           imagem="/assets/capa-spotify.png"
-          url="https://github.com/renatowillon/wDev-Spotify"
+          repositorio="https://github.com/renatowillon/wDev-Spotify"
+          url1="/assets/img_projects/macbook_spotify.png"
           />
         
       </section>
@@ -174,7 +176,6 @@ export default function Home() {
 
     </div>
     
-
     
   )
 }
