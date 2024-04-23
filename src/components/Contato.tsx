@@ -2,6 +2,7 @@
 
 import { FaWhatsapp, FaRegPaperPlane, FaRegCopy, FaAnglesUp } from "react-icons/fa6"
 import { Toaster, toast } from 'sonner'
+import { TypeAnimation } from "react-type-animation";
 
 let email = "renatowillon@hotmail.com"
 function copyTexto(){
@@ -15,7 +16,20 @@ function copyTexto(){
 export function Contato() {
     return(
     <div className="flex flex-col items-center justify-center py-5">
-        <span className="py-1 px-3 mb-7 bg-indigo-950 rounded-lg text-indigo-500 font-bold">📬 Contatos</span>
+        <span className="py-1 px-3 mb-7 bg-indigo-950 rounded-lg text-indigo-500 font-bold">
+        <TypeAnimation
+              sequence={[
+                "📬 Contatos_", 3000,
+                "📬 Contacts_", 3000,
+              ]} 
+              wrapper="span"
+              speed={10}
+              repeat={Infinity}
+              className=""
+            />
+        
+        
+        </span>
         
         <strong className="text-5xl px-3 text-indigo-300 mb-7">Vamos conversar!</strong>
         

@@ -1,4 +1,6 @@
+'use client'
 import Image from "next/image"
+import { useEffect, useRef } from 'react';
 import { FaInstagram, FaGithub, FaLinkedin, FaWhatsapp, FaCode, FaBoxesStacked, FaBezierCurve, FaPalette } from "react-icons/fa6"
 import { Projetos } from "@/components/projetos"
 import { ChevronUp, HomeIcon } from "lucide-react"
@@ -7,9 +9,17 @@ import { Skills } from "@/components/Skills"
 import { Contato } from "@/components/Contato"
 import { Toaster } from 'sonner'
 import { Footer } from "@/components/Footer"
+import { TypeAnimation } from "react-type-animation";
+
+let anoAtual = new Date()
+let Ano = anoAtual.getFullYear()
+let anoDesign = (anoAtual.getFullYear() - 2015)
+let anoDev = (anoAtual.getFullYear() - 2022)
 
 export default function Home() {
   return (
+
+    
     
     <div className="h-screen flex flex-col md:p-10 p-5">
       <Toaster richColors expand={true} closeButton position="bottom-center" />
@@ -17,10 +27,26 @@ export default function Home() {
       <section id="top">
         <Menu />
       </section>
-    
+      
     <div className="flex-row md:flex md:items-center md:justify-between  md:px-20 py-10"> 
-      <div className="flex flex-col gap-4">
-        <div className="bg-indigo-950 rounded-lg py-2 px-3 flex items-center justify-center text-indigo-500 font-bold">👋 Saudações!</div>
+      <div id="apresentacao" className="flex flex-col gap-4">
+        <div className="bg-indigo-950 rounded-lg py-2 gap-3 flex items-center justify-center text-indigo-500 font-bold">
+          <div className="hover:scale-110">
+            
+          </div>
+          <div>
+            <TypeAnimation
+              sequence={[
+                "👋 Hello World_", 3000,
+                "👋 Olá Mundo_", 3000,
+              ]} 
+              wrapper="span"
+              speed={10}
+              repeat={Infinity}
+              className=""
+              />
+          </div>
+        </div>
         <div className="flex flex-col items-center justify-center md:items-start">
           <span className="text-5xl text-indigo-500">Renato</span>
           <strong className="text-7xl text-indigo-500">Willon</strong>
@@ -61,7 +87,7 @@ export default function Home() {
         
         <div className="w-64 md:w-48 flex flex-col items-center border border-indigo-900 rounded-lg p-5">
           <div className="text-indigo-800"><FaBezierCurve size={50}/></div>
-          <span className="text-sm font-thin mt-2">9 anos como</span>
+          <span className="text-sm font-thin mt-2">{anoDesign} anos como</span>
           <strong className="text-2xl">Designer</strong>
         </div>
         
@@ -100,7 +126,19 @@ export default function Home() {
         
         <section id="sobre" className="md:flex md:flex-col md:justify-center md:col-span-3 md:gap-4 md:my-0 my-5">
           <div className="bg-indigo-950 relative rounded-lg py-2 px-3 flex items-center justify-center text-indigo-500 font-bold">
-          <Image className="absolute mt-36 ml-56" src="assets/icons/seta-baixo.svg" alt="Seta" width={100} height={100} />Sobre mim
+          <Image className="absolute mt-36 ml-56" src="assets/icons/seta-baixo.svg" alt="Seta" width={100} height={100} />
+
+          <TypeAnimation
+              sequence={[
+                "Sobre Mim_", 3000,
+                "About me_", 3000,
+              ]} 
+              wrapper="span"
+              speed={10}
+              repeat={Infinity}
+              className=""
+              />
+
           </div>
           
           <div className="text-indigo-300 text-3xl font-bold md:my-0 my-5">Renato Willon</div>
@@ -108,7 +146,7 @@ export default function Home() {
           <div className="flex flex-col">
           
             <span className="font-semibold pb-5">👋 Olá, me chamo Renato, Prazer em te ver por aqui!</span>
-            <span>👨‍💻 Há mais de 2 anos desenvolvendo e programando interfaces com JavaScript, React JS e Typescript.</span>
+            <span>👨‍💻 Há mais de {anoDev} anos desenvolvendo e programando interfaces com JavaScript, React JS e Typescript.</span>
             <span>🎓 Cursando na Rocketseat, Alura e entre outras plataformas de ensinos</span>
             <span>💡 Interesses em desenvolvimento Front-end com ReactJs, Typescript, NextJS e UX/UI Design.</span>
             <span className="py-5">🚀 Tentando ser um pouquinho melhor do que ontem todos dias.</span>
