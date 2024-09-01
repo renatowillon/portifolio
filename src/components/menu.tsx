@@ -1,4 +1,6 @@
 import Image from "next/image"
+import Link from "next/link"
+import { LockKeyhole } from 'lucide-react';
 
 export function Menu(){
     return(
@@ -12,7 +14,7 @@ export function Menu(){
           <a href="#jobs" className="hover:text-indigo-500 hover:font-semibold transition-colors duration-500">Portfólio</a>
           <a href="#skills" className="hover:text-indigo-500 hover:font-semibold transition-colors duration-500">Skills</a>
           <a href="#contato" className="hover:text-indigo-500 hover:font-semibold transition-colors duration-500">Contato</a>
-        
+          <Link href="/pages/projects"><LockKeyhole  size={20}/></Link>
       </div>
     </div>  
     )
