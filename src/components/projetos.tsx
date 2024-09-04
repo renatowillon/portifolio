@@ -3,7 +3,8 @@
 import Image from "next/image"
 import * as Dialog from '@radix-ui/react-dialog';
 import { Wrench, X } from "lucide-react";
-import { FaGitAlt, FaRankingStar, FaRegStar } from "react-icons/fa6";
+import { FaComputerMouse, FaGitAlt, FaRankingStar, FaRegStar } from "react-icons/fa6";
+import Link from "next/link";
 
 
 interface ProjetosProps{
@@ -19,9 +20,10 @@ interface ProjetosProps{
     url3?: string
     url4?: string
     repositorio?: string
+    liveView?: string
 }
 
-export function Projetos ({ titulo, descricao, categoria1, categoria2, imagem, categoria3, categoria4, url1, url2, url3, url4, repositorio }: ProjetosProps){
+export function Projetos ({ titulo, descricao, categoria1, categoria2, imagem, categoria3, categoria4, url1, url2, url3, url4, repositorio, liveView }: ProjetosProps){
     return(
     <Dialog.Root>
         <Dialog.Trigger className="flex flex-col p-5 gap-3 border border-indigo-800 w-full h-[350px] rounded-lg overflow-hidden">
@@ -62,6 +64,7 @@ export function Projetos ({ titulo, descricao, categoria1, categoria2, imagem, c
                         </div>
                         
                         <a href={repositorio} target="_blank" className="flex flex-row gap-2 bg-indigo-900 text-indigo-200 text-md font-semibold py-2 px-6 rounded-lg items-center justify-center"><FaGitAlt size={25} /> Repositório</a>
+                        <a href={liveView} target="_blank" className="flex flex-row gap-2 bg-indigo-900 text-indigo-200 text-md font-semibold py-2 px-6 rounded-lg items-center justify-center"><FaComputerMouse  size={25} /> Live View</a>
                     
                     </div>
                 <Dialog.Root>
@@ -88,4 +91,5 @@ export function Projetos ({ titulo, descricao, categoria1, categoria2, imagem, c
         </Dialog.Portal>
     </Dialog.Root>
 )
+
 }

@@ -10,7 +10,7 @@ export function Skills (){
             
             <span className="py-1 px-3 mb-7 bg-indigo-950 rounded-lg text-indigo-500 font-bold">
                 
-                <TypeAnimation
+            <TypeAnimation
               sequence={[
                 "🧑‍💻 Experiências_", 3000,
                 "🧑‍💻 Experiences_", 3000,

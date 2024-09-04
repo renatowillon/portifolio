@@ -16,6 +16,15 @@ let Ano = anoAtual.getFullYear()
 let anoDesign = (anoAtual.getFullYear() - 2015)
 let anoDev = (anoAtual.getFullYear() - 2022)
 
+
+// Constellation
+
+
+
+
+
+// Constellation
+
 export default function Home() {
   return (
 
@@ -183,6 +192,7 @@ export default function Home() {
           imagem="/assets/capa-notes.png"
           repositorio="https://github.com/renatowillon/NLW-Notes"
           url1="/assets/img_projects/macbook_notes.png"
+          liveView="/pages/projects/notes"
           />
         
         
@@ -196,6 +206,20 @@ export default function Home() {
           imagem="/assets/capa-spotify.png"
           repositorio="https://github.com/renatowillon/wDev-Spotify"
           url1="/assets/img_projects/macbook_spotify.png"
+          liveView="/pages/projects/spotify"
+          />
+
+          <Projetos
+          titulo="Clima Tempo"
+          descricao="Desenvolvido para fins estundantil um projeto consumindo uma API de tempo, para razer consultas do clima em tempo real, trazendo um resultado preciso da temperatura do local, com minima, máxima e umidade."
+          categoria1="Typescript"
+          categoria2="NextJS"
+          categoria3="Tailwind CSS"
+          categoria4="API"
+          imagem="/assets/capa-clima.png"
+          repositorio="https://github.com/renatowillon/tempo"
+          url1="/assets/img_projects/macbook_clima.png"
+          liveView="/pages/projects/tempo"
           />
         
       </section>

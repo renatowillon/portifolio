@@ -9,11 +9,11 @@ export function Menu(){
         <Image src="/assets/logo.png" alt="Logo wDev" height={60} width={60} />
       </section>
       <div className="text-indigo-300 flex items-center text-sm font-normal gap-5">
-          <a href="#" className="hover:text-indigo-500 hover:font-semibold transition-colors duration-500">Home</a>
-          <a href="#sobre" className="hover:text-indigo-500 hover:font-semibold transition-colors duration-500">Sobre mim</a>
-          <a href="#jobs" className="hover:text-indigo-500 hover:font-semibold transition-colors duration-500">Portfólio</a>
-          <a href="#skills" className="hover:text-indigo-500 hover:font-semibold transition-colors duration-500">Skills</a>
-          <a href="#contato" className="hover:text-indigo-500 hover:font-semibold transition-colors duration-500">Contato</a>
+          <a href="#" className="hover:text-indigo-500 transition-colors duration-300">Home</a>
+          <a href="#sobre" className="hover:text-indigo-500 transition-colors duration-300">Sobre mim</a>
+          <a href="#jobs" className="hover:text-indigo-500 transition-colors duration-300">Portfólio</a>
+          <a href="#skills" className="hover:text-indigo-500 transition-colors duration-300">Skills</a>
+          <a href="#contato" className="hover:text-indigo-500 transition-colors duration-300">Contato</a>
           <Link href="/pages/projects"><LockKeyhole  size={20}/></Link>
       </div>
     </div>  
