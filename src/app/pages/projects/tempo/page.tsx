@@ -1,6 +1,7 @@
 'use client'
 import { Toaster, toast } from 'sonner'
 import { FaSistrix, FaHeart, FaAngleDown, FaAngleUp } from "react-icons/fa6";
+import { promises } from 'dns';
 
 const key = "2700b5defae477e83d3c60909f7c5276"
 interface Main {
@@ -44,11 +45,11 @@ function dadosNaTela(dados:Dados){
 }
 
 interface Cidade {
-  cidade: string
+  cidade: string;
 }
 
 // Pegar Info Servidor
-async function buscarCidade(cidade:Cidade){
+async function buscarCidade(cidade: Cidade){
   
   const dados = await fetch (`https://api.openweathermap.org/data/2.5/weather?q=${cidade}&appid=${key}&lang=pt_br&units=metric`).then( resposta => resposta.json())
   
@@ -58,18 +59,23 @@ async function buscarCidade(cidade:Cidade){
 
 // Pegar Cidade
 
-function buscar(){
-  const cidade = document.querySelector("#inpcidade")?.value
+
+
+function buscar(cidade: Cidade) {
+  const inputElement = document.querySelector("#inpcidade") as HTMLInputElement | null;
   
-  if (cidade.length == 0){
-        toast.error('Preencha o nome da cidade')
-  }else{
-    //alert("CIDADE OK")
-    buscarCidade(cidade)
+  if (inputElement) {
+    const cidade = inputElement.value;
+
+    if (cidade.length === 0) {
+      toast.error('Preencha o nome da cidade');
+    } else {
+      //alert("CIDADE OK")
+      buscarCidade(cidade);
+    }
+  } else {
+    toast.error('O campo de cidade não foi encontrado');
   }
-
-  //
-
 }
 
 const Page = () => {
@@ -82,7 +88,7 @@ const Page = () => {
         
         <div id="buscar" className="flex gap-3">
           <input id="inpcidade" type="text" placeholder="Digite o nome da cidade" className="border-none outline-none bg-slate-600/80 p-2 rounded-full text-slate-400"/>
-          <button onClick={buscar} className="bg-slate-600/80 w-10 h-10 p-2 rounded-full flex items-center justify-center"><FaSistrix className="text-slate-400"/></button>
+          <button onClick={() => buscar} className="bg-slate-600/80 w-10 h-10 p-2 rounded-full flex items-center justify-center"><FaSistrix className="text-slate-400"/></button>
         </div>
 
         <div id="rescidade" className="text-slate-200 py-3">Previsão do tempo</div>
