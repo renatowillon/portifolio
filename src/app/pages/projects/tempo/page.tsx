@@ -52,7 +52,7 @@ function buscar(){
 
 }
 
-const page = () => {
+const Page = () => {
   return (
 
     
@@ -97,4 +97,4 @@ const page = () => {
     </main>
   );
 }
-export default page
+export default Page

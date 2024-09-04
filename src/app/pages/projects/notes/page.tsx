@@ -11,7 +11,7 @@ interface Note {
   content: string
 }
 
-const page = () => {
+const Page = () => {
     const [search, setSearch] = useState('')
 
   const [notes, setNotes] = useState<Note[]>(() => {
@@ -82,4 +82,4 @@ const page = () => {
         </div>
     )
 }
-export default page
+export default Page

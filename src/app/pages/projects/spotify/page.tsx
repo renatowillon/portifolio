@@ -5,7 +5,7 @@ import { ListaSecundaria } from '@/components/spotify/ListSecundaria';
 import { Footer } from '@/components/spotify/Footer';
 
 
-const page = () => {
+const Page = () => {
   return (
     
     //INICIO DO PROJETO
@@ -207,4 +207,4 @@ const page = () => {
     
   );
 }
-export default page
+export default Page
