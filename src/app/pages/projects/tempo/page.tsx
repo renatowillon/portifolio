@@ -3,32 +3,52 @@ import { Toaster, toast } from 'sonner'
 import { FaSistrix, FaHeart, FaAngleDown, FaAngleUp } from "react-icons/fa6";
 
 const key = "2700b5defae477e83d3c60909f7c5276"
+interface Main {
+  temp: number;
+  humidity: number;
+  temp_min: number;
+  temp_max: number;
+}
 
+interface Weather {
+  description: string;
+  icon: string;
+}
+
+interface Dados {
+  cidade: string;
+  name: string;
+  main: Main;
+  weather: Weather[];
+}
 
 // Alimentar Dados
-function dadosNaTela(dados){
+function dadosNaTela(dados:Dados){
 
   const resCidade = document.querySelector("#rescidade");
   const graus = document.querySelector("#graus");
   const tempo = document.querySelector("#tempo");
   const umidade = document.querySelector("#umidade");
-  const icontempo = document.querySelector("#icontempo");
+  const icontempo = document.querySelector("#icontempo") as HTMLImageElement;
   const tmin = document.querySelector("#tmin");
   const tmax = document.querySelector("#tmax");
 
   if (resCidade) resCidade.innerHTML = `Previsão em ${dados.name}`;
   if (graus) graus.innerHTML = `${Math.floor(dados.main.temp)} °C`;
-  if (tempo) tempo.innerHTML = dados.weather[0].description;
+  if (tempo && dados.weather.length > 0) tempo.innerHTML = dados.weather[0].description;
   if (umidade) umidade.innerHTML = `Umidade ${dados.main.humidity}%`;
-  if (icontempo) icontempo.src = `https://openweathermap.org/img/wn/${dados.weather[0].icon}.png`;
+  if (icontempo && dados.weather.length > 0) icontempo.src = `https://openweathermap.org/img/wn/${dados.weather[0].icon}.png`;
   if (tmin) tmin.innerHTML = `${Math.floor(dados.main.temp_min)} °C`;
   if (tmax) tmax.innerHTML = `${Math.floor(dados.main.temp_max)} °C`;
 
 }
 
+interface Cidade {
+  cidade: string
+}
 
 // Pegar Info Servidor
-async function buscarCidade(cidade){
+async function buscarCidade(cidade:Cidade){
   
   const dados = await fetch (`https://api.openweathermap.org/data/2.5/weather?q=${cidade}&appid=${key}&lang=pt_br&units=metric`).then( resposta => resposta.json())
   
