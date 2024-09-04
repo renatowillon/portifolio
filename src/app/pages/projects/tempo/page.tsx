@@ -44,39 +44,39 @@ function dadosNaTela(dados:Dados){
 
 }
 
+// Atualize a interface Cidade se necessário
 interface Cidade {
   cidade: string;
+  nome: string;
 }
 
 // Pegar Info Servidor
-async function buscarCidade(cidade: Cidade){
+async function buscarCidade(nomeCidade: string) {
+  const key = 'YOUR_API_KEY'; // Substitua pelo sua chave de API
+  const dados = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${nomeCidade}&appid=${key}&lang=pt_br&units=metric`)
+    .then(resposta => resposta.json());
   
-  const dados = await fetch (`https://api.openweathermap.org/data/2.5/weather?q=${cidade}&appid=${key}&lang=pt_br&units=metric`).then( resposta => resposta.json())
-  
-  dadosNaTela(dados)
-  console.log(dados)
+  dadosNaTela(dados);
+  console.log(dados);
 }
 
 // Pegar Cidade
-
-
-
-function buscar(cidade: Cidade) {
+function buscar() {
   const inputElement = document.querySelector("#inpcidade") as HTMLInputElement | null;
-  
-  if (inputElement) {
-    const cidade = inputElement.value;
 
-    if (cidade.length === 0) {
+  if (inputElement) {
+    const cidadeNome = inputElement.value;
+
+    if (cidadeNome.length === 0) {
       toast.error('Preencha o nome da cidade');
     } else {
-      //alert("CIDADE OK")
-      buscarCidade(cidade);
+      buscarCidade(cidadeNome);
     }
   } else {
     toast.error('O campo de cidade não foi encontrado');
   }
 }
+
 
 const Page = () => {
   return (
