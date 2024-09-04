@@ -22,7 +22,7 @@ const Page = () => {
     return[]
   })
 
-  function onNoteCreated(content:String){
+  function onNoteCreated(content:string){
     const newNote = {
       id: crypto.randomUUID(),
       data: new Date(),
