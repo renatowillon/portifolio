@@ -192,7 +192,7 @@ export default function Home() {
           imagem="/assets/capa-notes.png"
           repositorio="https://github.com/renatowillon/NLW-Notes"
           url1="/assets/img_projects/macbook_notes.png"
-          liveView="/pages/projects/notes"
+          liveView="/assets/img_projects/macbook_notes.png"
           />
         
         
