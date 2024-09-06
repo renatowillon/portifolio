@@ -177,6 +177,19 @@ export default function Home() {
       <section id="jobs" className="grid md:grid-cols-3 px-5 py-10 gap-5 justify-items-center">
           
           <Projetos
+          titulo="Clima Tempo"
+          descricao="Desenvolvido para fins estundantil um projeto consumindo uma API de tempo, para razer consultas do clima em tempo real, trazendo um resultado preciso da temperatura do local, com minima, máxima e umidade."
+          categoria1="Typescript"
+          categoria2="NextJS"
+          categoria3="Tailwind CSS"
+          categoria4="API"
+          imagem="/assets/capa-clima.png"
+          repositorio="https://github.com/renatowillon/tempo"
+          url1="/assets/img_projects/macbook_clima.png"
+          liveView="/pages/projects/tempo"
+          />
+
+          <Projetos
           titulo="Notes"
           descricao="Notes é um projeto que foi realizado junto a NLW com a Rocketseat para armazenamento de notas, salvando notas via audio que faz a conversão para o texto de forma otimizada, como também salvando a nota em texto, salvando em localstorage, e podendo apagar caso necessario."
           categoria1="Typescript"
@@ -188,7 +201,6 @@ export default function Home() {
           url1="/assets/img_projects/macbook_notes.png"
           liveView="/assets/img_projects/macbook_notes.png"
           />
-        
         
           <Projetos
           titulo="Spotify"
@@ -203,20 +215,6 @@ export default function Home() {
           liveView="/pages/projects/spotify"
           />
 
-          <Projetos
-          titulo="Clima Tempo"
-          descricao="Desenvolvido para fins estundantil um projeto consumindo uma API de tempo, para razer consultas do clima em tempo real, trazendo um resultado preciso da temperatura do local, com minima, máxima e umidade."
-          categoria1="Typescript"
-          categoria2="NextJS"
-          categoria3="Tailwind CSS"
-          categoria4="API"
-          imagem="/assets/capa-clima.png"
-          repositorio="https://github.com/renatowillon/tempo"
-          url1="/assets/img_projects/macbook_clima.png"
-          liveView="/pages/projects/tempo"
-          />
-
-          
         {/* <div></div>
         <button onClick={handleMaisProjetos} className="flex items-center justify-center text-indigo-300 bg-indigo-600 rounded-full hover:scale-110 p-2 transition-all"><ArrowDown /></button>
         <div></div> */}
