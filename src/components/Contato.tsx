@@ -7,8 +7,8 @@ import { TypeAnimation } from "react-type-animation";
 let email = "renatowillon@hotmail.com"
 function copyTexto(){
     navigator.clipboard.writeText(email).then(() => {
-    toast.info('👋Oii, ao clicar no email uma mágica acontece')
-    toast.success('Email copiado! 😁')
+        toast.info('👋Oii, ao clicar no email uma mágica acontece')
+        toast.success('Email copiado! 😁')
     
 })
 }

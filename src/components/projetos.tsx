@@ -70,7 +70,7 @@ export function Projetos ({ titulo, descricao, categoria1, categoria2, imagem, c
                 <Dialog.Root>
                     <Dialog.Trigger>
                         <div className="flex items-center justify-center p-10 target:fixed target:w-1/2 target:top-4 target:left-1/4">
-                            <Image src={url1} alt={titulo} height={700} width={700} />
+                            <Image src={url1} alt={titulo} height={1000} width={1000} />
                         </div>
                     </Dialog.Trigger>
                     

@@ -1,9 +1,9 @@
 'use client'
 import Image from "next/image"
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FaInstagram, FaGithub, FaLinkedin, FaWhatsapp, FaCode, FaBoxesStacked, FaBezierCurve, FaPalette } from "react-icons/fa6"
 import { Projetos } from "@/components/projetos"
-import { ChevronUp, HomeIcon } from "lucide-react"
+import { ArrowBigDown, ArrowDown, ChevronUp, HomeIcon } from "lucide-react"
 import { Menu } from "@/components/menu"
 import { Skills } from "@/components/Skills"
 import { Contato } from "@/components/Contato"
@@ -11,24 +11,19 @@ import { Toaster } from 'sonner'
 import { Footer } from "@/components/Footer"
 import { TypeAnimation } from "react-type-animation";
 
-let anoAtual = new Date()
-let Ano = anoAtual.getFullYear()
-let anoDesign = (anoAtual.getFullYear() - 2015)
-let anoDev = (anoAtual.getFullYear() - 2022)
-
-
-// Constellation
-
-
-
-
-
-// Constellation
-
 export default function Home() {
+  const anoAtual = new Date()
+  const Ano = anoAtual.getFullYear()
+  const anoDesign = (anoAtual.getFullYear() - 2015)
+  const anoDev = (anoAtual.getFullYear() - 2022)
+  
+  const [mostrarMaisProjetos, setMostrarMaisProjetos] = useState(false)
+  const handleMaisProjetos = () => {
+    setMostrarMaisProjetos (!mostrarMaisProjetos)
+  }
+
   return (
 
-    
     
     <div className="h-screen flex flex-col md:p-10 p-5">
       <Toaster richColors expand={true} closeButton position="bottom-center" />
@@ -180,8 +175,7 @@ export default function Home() {
       </div>
       
       <section id="jobs" className="grid md:grid-cols-3 px-5 py-10 gap-5 justify-items-center">
-                
-        
+          
           <Projetos
           titulo="Notes"
           descricao="Notes é um projeto que foi realizado junto a NLW com a Rocketseat para armazenamento de notas, salvando notas via audio que faz a conversão para o texto de forma otimizada, como também salvando a nota em texto, salvando em localstorage, e podendo apagar caso necessario."
@@ -221,7 +215,13 @@ export default function Home() {
           url1="/assets/img_projects/macbook_clima.png"
           liveView="/pages/projects/tempo"
           />
+
+          
+        {/* <div></div>
+        <button onClick={handleMaisProjetos} className="flex items-center justify-center text-indigo-300 bg-indigo-600 rounded-full hover:scale-110 p-2 transition-all"><ArrowDown /></button>
+        <div></div> */}
         
+
       </section>
 
       <section id="skills" className="w-full md:px-96 px-3 flex flex-col items-center justify-center border-y border-indigo-900">

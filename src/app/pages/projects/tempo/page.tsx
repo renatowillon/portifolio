@@ -52,7 +52,7 @@ interface Cidade {
 
 // Pegar Info Servidor
 async function buscarCidade(nomeCidade: string) {
-  const key = 'YOUR_API_KEY'; // Substitua pelo sua chave de API
+  const key = '2700b5defae477e83d3c60909f7c5276'; // Substitua pelo sua chave de API
   const dados = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${nomeCidade}&appid=${key}&lang=pt_br&units=metric`)
     .then(resposta => resposta.json());
   
@@ -88,7 +88,7 @@ const Page = () => {
         
         <div id="buscar" className="flex gap-3">
           <input id="inpcidade" type="text" placeholder="Digite o nome da cidade" className="border-none outline-none bg-slate-600/80 p-2 rounded-full text-slate-400"/>
-          <button onClick={() => buscar} className="bg-slate-600/80 w-10 h-10 p-2 rounded-full flex items-center justify-center"><FaSistrix className="text-slate-400"/></button>
+          <button onClick={buscar} className="bg-slate-600/80 w-10 h-10 p-2 rounded-full flex items-center justify-center"><FaSistrix className="text-slate-400"/></button>
         </div>
 
         <div id="rescidade" className="text-slate-200 py-3">Previsão do tempo</div>
