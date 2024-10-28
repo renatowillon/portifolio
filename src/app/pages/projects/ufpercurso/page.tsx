@@ -4,112 +4,85 @@ import { Fullscreen } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
 
+interface Percursos {
+    [key: string]: {
+        [key: string]: string;
+    };
+}
+
 
 const Page = () => {
     const [ufOrigem, setUfOrigem] = useState('')
     const [ufDestino, setUfDestino] = useState('')
     const [percurso, setPercurso] = useState('')
     const NovoPercurso = () => {
-        setUfDestino('')
-        setUfOrigem('')
-        setPercurso('')
-        setShowPercurso(false)
+        setTimeout (() => {
+            setUfDestino('')
+            setUfOrigem('')
+            setPercurso('')
+            setShowPercurso(false)
+        }, 500);
     }
     
     const handleMostrarGerador = () => {
-        setShowGerarPercurso(!showGerarPercurso)
-        setUfDestino('')
-        setUfOrigem('')
-        setPercurso('')
-        setShowPercurso(false)
+        setTimeout (() => {
+            setShowGerarPercurso(!showGerarPercurso)
+            setUfDestino('')
+            setUfOrigem('')
+            setPercurso('')
+            setShowPercurso(false)
+
+        }, 500)
+        
     }
     const [showGerarPercurso, setShowGerarPercurso] = useState(false)
     const [showPercurso, setShowPercurso] = useState(false)
-    const GerarPercurso = () => {
-        if(ufOrigem === '' || ufDestino === ''){
-            alert('[Error!] Preencha os campos de Origem e Destino!')
-        }else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Acre - AC') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
-        }else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Alagoas - AL') {
-            setPercurso('PE');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Amazonas - AM') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Bahia - BA') {
-            setPercurso('PE');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Ceará - CE') {
-            setPercurso('RN');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Distrito Federal - DF') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Espírito Santo - ES') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Goiás - GO') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Maranhão - MA') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Mato Grosso - MT') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Mato Grosso do Sul - MS') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Minas Gerais - MG') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Pará - PA') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Paraíba - PB') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Paraná - PR') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Pernambuco - PE') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Piauí - PI') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Rio de Janeiro - RJ') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Rio Grande do Norte - RN') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Rio Grande do Sul - RS') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Rondônia - RO') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Roraima - RR') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Santa Catarina - SC') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'São Paulo - SP') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Sergipe - SE') {
-            setPercurso('PE | AL');
-            setShowPercurso(true);
-        } else if (ufOrigem === 'Paraiba - PB' && ufDestino === 'Tocantins - TO') {
-            setPercurso('Não há UF no Percurso');
-            setShowPercurso(true);
+    const percursos: Percursos = {
+
+        'Pernanbuco - PE': {
+            'São Paulo - SP': 'AL | SE | BA | MG | ES | RJ'
+        },
+        'Paraiba - PB': {
+            'Acre - AC': 'Não há UF no Percurso',
+            'Alagoas - AL': 'PE',
+            'Amazonas - AM': 'Não há UF no Percurso',
+            'Bahia - BA': 'PE',
+            'Ceará - CE': 'RN',
+            'Distrito Federal - DF': 'Não há UF no Percurso',
+            'Espírito Santo - ES': 'Não há UF no Percurso',
+            'Goiás - GO': 'Não há UF no Percurso',
+            'Maranhão - MA': 'Não há UF no Percurso',
+            'Mato Grosso - MT': 'Não há UF no Percurso',
+            'Mato Grosso do Sul - MS': 'Não há UF no Percurso',
+            'Minas Gerais - MG': 'Não há UF no Percurso',
+            'Pará - PA': 'Não há UF no Percurso',
+            'Paraíba - PB': 'Não há UF no Percurso',
+            'Paraná - PR': 'Não há UF no Percurso',
+            'Pernambuco - PE': 'Não há UF no Percurso',
+            'Piauí - PI': 'PE',
+            'Rio de Janeiro - RJ': 'Não há UF no Percurso',
+            'Rio Grande do Norte - RN': 'Não há UF no Percurso',
+            'Rio Grande do Sul - RS': 'Não há UF no Percurso',
+            'Rondônia - RO': 'Não há UF no Percurso',
+            'Roraima - RR': 'Não há UF no Percurso',
+            'Santa Catarina - SC': 'Não há UF no Percurso',
+            'São Paulo - SP': 'PE | AL | SE | BA | MG | ES | RJ',
+            'Sergipe - SE': 'PE | AL',
+            'Tocantins - TO': 'Não há UF no Percurso'
         }
-        
-        
-    }
+    };
+    
+    const GerarPercurso = () => {
+        if(ufOrigem === '' || ufDestino === '') {
+            alert('[Error!] Preencha os campos de Origem e Destino!');
+            return;
+        }
+    
+        const percurso = percursos[ufOrigem]?.[ufDestino] || 'Percurso não encontrado';
+        setPercurso(percurso);
+        setShowPercurso(true);
+    };
+    
 
     
     return (
