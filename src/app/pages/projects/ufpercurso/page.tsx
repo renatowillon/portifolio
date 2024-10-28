@@ -124,6 +124,7 @@ const Page = () => {
                     <select value={ufOrigem} onChange={e => setUfOrigem(e.target.value)} className="rounded-md bg-slate-600 w-[200px] h-10">
                         <option className="" value="">Selecione uma UF</option>
                         <option className="" value="Paraiba - PB">Paraiba - PB</option>
+                        <option className="" value="Pernanbuco - PE">Pernanbuco - PE</option>
                     </select>
                 </div>
                 
