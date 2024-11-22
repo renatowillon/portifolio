@@ -46,7 +46,7 @@ const Page = () => {
             'Acre - AC': 'Não há UF no Percurso',
             'Alagoas - AL': 'PE',
             'Amazonas - AM': 'Não há UF no Percurso',
-            'Bahia - BA': 'PE',
+            'Bahia - BA': 'PE | AL | SE',
             'Ceará - CE': 'RN',
             'Distrito Federal - DF': 'Não há UF no Percurso',
             'Espírito Santo - ES': 'Não há UF no Percurso',
