@@ -6,7 +6,7 @@ export function Footer(){
 
         <footer className="bg-zinc-950 p-3 grid-cols-3 flex justify-between">
           <div className="flex items-center gap-3 col-span-1"> 
-            <Image src="/Kansas.jpg" width={56} height={56} alt="Capa Kansas" />
+            <Image src="/assets/Kansas.jpg" width={56} height={56} alt="Capa Kansas" />
             <div className="flex flex-col">
               <strong className="font-medium text-zinc-400 hover:underline hover:text-zinc-200 hover:cursor-pointer">A Vida é um sopro - Acústico Vivências</strong>
               <span className="font-medium text-sm text-zinc-400 hover:underline hover:text-zinc-200 hover:cursor-pointer">Tribo da Periferia, MC Hariel</span>

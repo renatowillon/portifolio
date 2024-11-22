@@ -151,7 +151,7 @@ export default function Home() {
           
             <span className="font-semibold pb-5">👋 Olá, me chamo Renato, Prazer em te ver por aqui!</span>
             <span>👨‍💻 Há mais de {anoDev} anos desenvolvendo e programando interfaces com JavaScript, React JS e Typescript.</span>
-            <span>🎓 Cursando na Rocketseat, Alura e entre outras plataformas de ensinos</span>
+            <span>🎓 Cursando na b7Web, Rocketseat, Alura, Dio, entre outras plataformas de ensinos</span>
             <span>💡 Interesses em desenvolvimento Front-end com ReactJs, Typescript, NextJS e UX/UI Design.</span>
             <span className="py-5">🚀 Tentando ser um pouquinho melhor do que ontem todos dias.</span>
 
@@ -199,7 +199,7 @@ export default function Home() {
           imagem="/assets/capa-notes.png"
           repositorio="https://github.com/renatowillon/NLW-Notes"
           url1="/assets/img_projects/macbook_notes.png"
-          liveView="/assets/img_projects/macbook_notes.png"
+          //liveView="/assets/img_projects/macbook_notes.png"
           />
         
           <Projetos
