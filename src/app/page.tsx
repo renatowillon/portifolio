@@ -85,13 +85,13 @@ export default function Home() {
         
         <div className="w-64 md:w-48 flex flex-col items-center bg-indigo-950 rounded-lg p-5">
           <div className="text-indigo-600"><FaBoxesStacked size={50}/></div>
-          <span className="text-sm font-thin mt-2">null Jobs</span>
-          <strong className="text-2xl">Trabalhos</strong>
+          <span className="text-sm font-thin mt-2">Some Projects</span>
+          <strong className="text-2xl">Developed</strong>
         </div>
         
         <div className="w-64 md:w-48 flex flex-col items-center border border-indigo-900 rounded-lg p-5">
           <div className="text-indigo-800"><FaBezierCurve size={50}/></div>
-          <span className="text-sm font-thin mt-2">{anoDesign} anos como</span>
+          <span className="text-sm font-thin mt-2">experiente como</span>
           <strong className="text-2xl">Designer</strong>
         </div>
         
