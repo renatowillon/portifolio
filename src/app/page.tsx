@@ -70,7 +70,7 @@ export default function Home() {
               <FaGithub size={30} />
             </a>
             <a
-              href="https://www.linkedin.com/in/renato-willon-414ba155/"
+              href="https://www.linkedin.com/in/renatowillon/"
               target="_blank"
             >
               <FaLinkedin size={30} />
