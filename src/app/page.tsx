@@ -24,7 +24,7 @@ export default function Home() {
   const anoAtual = new Date();
   const Ano = anoAtual.getFullYear();
   const anoDesign = anoAtual.getFullYear() - 2015;
-  const anoDev = anoAtual.getFullYear() - 2022;
+  const anoDev = anoAtual.getFullYear() - 2023;
 
   const [mostrarMaisProjetos, setMostrarMaisProjetos] = useState(false);
   const handleMaisProjetos = () => {
@@ -63,19 +63,16 @@ export default function Home() {
             <strong className="text-7xl text-indigo-500">Willon</strong>
           </div>
           <div className="text-lg text-zinc-500 font-semibold flex items-center justify-center">
-            Front-end developer · UI designer
+            Full Stack Developer · UI designer
           </div>
           <div className="flex items-center justify-center gap-8">
             <a href="https://github.com/renatowillon/" target="_blank">
               <FaGithub size={30} />
             </a>
-            <a
-              href="https://www.linkedin.com/in/renatowillon/"
-              target="_blank"
-            >
+            <a href="https://www.linkedin.com/in/renatowillon/" target="_blank">
               <FaLinkedin size={30} />
             </a>
-            <a href="https://instagram.com/renatowillon/" target="_blank">
+            <a href="https://instagram.com/renato.willon/" target="_blank">
               <FaInstagram size={30} />
             </a>
           </div>
@@ -136,7 +133,7 @@ export default function Home() {
         <div className="flex flex-col items-center justify-center gap-5 p-12 md:w-full md:col-span-3 bg-indigo-950 rounded-lg md:grid md:grid-cols-3 md:justify-items-center py-3">
           <div className="flex flex-col items-center justify-center">
             <span className="text-sm text-indigo-500">Desenvolvedor</span>
-            <strong className="text-3xl text-indigo-500">Front-end</strong>
+            <strong className="text-3xl text-indigo-500">Full Stack</strong>
           </div>
 
           <div className="flex flex-col items-center justify-center border-y md:border-none border-indigo-500 py-5">
@@ -189,21 +186,24 @@ export default function Home() {
             Renato Willon
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-1">
             <span className="font-semibold pb-5">
               👋 Olá, me chamo Renato, Prazer em te ver por aqui!
             </span>
             <span>
               👨‍💻 Há mais de {anoDev} anos desenvolvendo e programando interfaces
-              com JavaScript, React JS e Typescript.
+              com JavaScript, Next JS e Typescript.
             </span>
             <span>
-              🎓 Cursando na b7Web, Rocketseat, Alura, Dio, entre outras
-              plataformas de ensinos
+              🎓 Graduação na Anhanguera, em Análise e Desenvolvimento de
+              Software
             </span>
             <span>
-              💡 Interesses em desenvolvimento Front-end com ReactJs,
-              Typescript, NextJS e UX/UI Design.
+              📝 Cursando na b7Web, Rocketseat, Alura, focado em FullStack
+            </span>
+            <span>
+              💡 Interesses em desenvolvimento Full Stack com NodeJS, NextJS,
+              Typescript e UX/UI Design.
             </span>
             <span className="py-5">
               🚀 Tentando ser um pouquinho melhor do que ontem todos dias.
@@ -234,7 +234,7 @@ export default function Home() {
           </div>
           <div className="bg-indigo-950 py-2 px-14 rounded-lg text-indigo-500 font-bold flex gap-3 items-center justify-center">
             <FaPalette />
-            Design
+            UX/UI
           </div>
           <div className="border border-indigo-950 py-2 px-14 rounded-lg text-indigo-800 font-bold flex gap-3 items-center justify-center">
             <Image
