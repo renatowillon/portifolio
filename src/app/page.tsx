@@ -256,12 +256,12 @@ export default function Home() {
         <Projetos
           titulo="wFinance AI"
           descricao="Aplicação desenvolvida a fins de auxiliar no controle financeiro pessoal, fazendo os controles basicos de entradas e saidas, com gráficos de dashboard para auxiliar nos valores rapidamente."
-          categoria1="Typescript"
+          categoria1="NextJS"
           categoria2="Prisma"
           categoria3="NeonDB"
           categoria4="Stripe"
           imagem="/assets/img_projects/homePage-wfinance.png"
-          repositorio="https://github.com/renatowillon/finance-ai"
+          repositorio="https://wfinance-ia.vercel.app/"
           url1="/assets/img_projects/macbook_finance.png"
           liveView="https://wfinance-ia.vercel.app/"
         />
