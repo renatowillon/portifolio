@@ -254,6 +254,18 @@ export default function Home() {
         className="grid md:grid-cols-3 px-5 py-10 gap-5 justify-items-center"
       >
         <Projetos
+          titulo="wFinance AI"
+          descricao="Aplicação desenvolvida a fins de auxiliar no controle financeiro pessoal, fazendo os controles basicos de entradas e saidas, com gráficos de dashboard para auxiliar nos valores rapidamente."
+          categoria1="Typescript"
+          categoria2="NextJS"
+          categoria3="Tailwind CSS"
+          categoria4="Shadcn/UI"
+          imagem="/assets/img_projects/homePage-wfinance.png"
+          repositorio="https://github.com/renatowillon/finance-ai"
+          url1="/assets/img_projects/macbook_finance.png"
+          liveView="https://wfinance-ia.vercel.app/"
+        />
+        <Projetos
           titulo="Pedido Zap"
           descricao="Desenvolvido para restaurantes no qual queira mostrar seus produtos e fazer pedidos online que cairá no whatsapp do estabelecimento, além de mostrar toda a estrutura da empresa."
           categoria1="Typescript"
