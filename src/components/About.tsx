@@ -3,11 +3,11 @@ import { Download, Code, Palette, Zap } from "lucide-react";
 
 const About = () => {
   const technologies = [
-    { name: "React", level: 90 },
-    { name: "Next.js", level: 85 },
+    { name: "React", level: 89 },
+    { name: "Next.js", level: 89 },
     { name: "TypeScript", level: 80 },
-    { name: "TailwindCSS", level: 95 },
-    { name: "JavaScript", level: 90 },
+    { name: "TailwindCSS", level: 89 },
+    { name: "JavaScript", level: 86 },
     { name: "HTML/CSS", level: 95 },
   ];
 
@@ -79,7 +79,7 @@ const About = () => {
 
             <div className="pt-6">
               <a
-                href="/curriculo-renato-willon.pdf"
+                href="/downloads/curriculo-renato-willon.pdf"
                 download
                 className="btn-primary"
               >

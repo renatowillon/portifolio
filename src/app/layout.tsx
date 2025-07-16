@@ -17,7 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className="scroll-smooth">
-      <body className="bg-slate-950 text-zinc-100">{children}</body>
+      <body className="bg-slate-950 text-zinc-100">
+        <Toaster position="bottom-right" expand={false} richColors />
+        {children}
+      </body>
     </html>
   );
 }

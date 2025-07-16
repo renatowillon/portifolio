@@ -1,32 +1,29 @@
 export const testimonials = [
   {
-    name: "Ana Silva",
-    role: "Product Manager",
-    company: "TechStart Solutions",
-    image:
-      "https://images.unsplash.com/photo-1494790108755-2616b612b142?w=150&h=150&fit=crop&crop=face",
+    name: "Pedro Alex",
+    role: "SEO",
+    company: "ImagoDei Medical",
+    image: "/assets/logorw.png",
     content:
-      "Renato é um desenvolvedor excepcional. Sua capacidade de transformar designs complexos em código limpo e funcional é impressionante. Sempre entrega no prazo e com qualidade superior.",
+      "Fiquei impressionado com o resultado! O projeto foi entregue antes do prazo e superou todas as minhas expectativas. Profissionalismo nota 10!",
     rating: 5,
   },
   {
-    name: "Carlos Mendes",
-    role: "Tech Lead",
-    company: "Agência PixelWeb",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+    name: "Thiago",
+    role: "Gerente",
+    company: "Bollos da Vall",
+    image: "/assets/logorw.png",
     content:
-      "Trabalhar com o Renato foi uma experiência fantástica. Ele tem um olho aguçado para detalhes e uma compreensão profunda das melhores práticas de desenvolvimento front-end. Recomendo fortemente!",
+      "Excelente trabalho! Comunicação clara, prazo cumprido e o sistema ficou exatamente como eu precisava. Recomendo demais!",
     rating: 5,
   },
   {
-    name: "Marina Costa",
-    role: "UI/UX Designer",
-    company: "Design Studio Pro",
-    image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+    name: "Gabryel",
+    role: "Backend",
+    company: "BarberIO",
+    image: "/assets/logorw.png",
     content:
-      "É raro encontrar um desenvolvedor que entende tão bem a visão do designer. Renato consegue implementar interfaces pixel-perfect mantendo a performance e usabilidade. Um verdadeiro profissional.",
+      "Muito satisfeito com a entrega. O site ficou moderno, rápido e funcional. Além disso, o suporte e atenção ao detalhe foram incríveis!",
     rating: 5,
   },
 ];

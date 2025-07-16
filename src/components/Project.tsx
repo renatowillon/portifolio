@@ -1,22 +1,21 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Github, ExternalLink } from "lucide-react";
-
 import ProjectModal from "./ProjectModal";
-import { Project } from "@/types/projects";
+import { Projeto } from "@/types/projetos";
 import { initialProjects } from "@/models/Projects";
 
 const Projects = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [projetos, setProjetos] = useState<Projeto[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [adminInput, setAdminInput] = useState("");
 
   useEffect(() => {
     const savedProjects = localStorage.getItem("renatoPortfolioProjects");
     if (savedProjects) {
-      setProjects(JSON.parse(savedProjects));
+      setProjetos(JSON.parse(savedProjects));
     } else {
-      setProjects(initialProjects);
+      setProjetos(initialProjects);
       localStorage.setItem(
         "renatoPortfolioProjects",
         JSON.stringify(initialProjects)
@@ -35,14 +34,13 @@ const Projects = () => {
     }
   };
 
-  const handleAddProject = (newProject: Omit<Project, "id">) => {
-    const project: Project = {
+  const handleAddProject = (newProject: Omit<Projeto, "id">) => {
+    const projeto: Projeto = {
       ...newProject,
-      id: Date.now().toString(),
     };
 
-    const updatedProjects = [...projects, project];
-    setProjects(updatedProjects);
+    const updatedProjects = [...projetos, projeto];
+    setProjetos(updatedProjects);
     localStorage.setItem(
       "renatoPortfolioProjects",
       JSON.stringify(updatedProjects)
@@ -63,19 +61,19 @@ const Projects = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {projetos.map((projeto, index) => (
             <div
-              key={project.id}
+              key={projeto.id}
               className="bg-navy rounded-xl overflow-hidden card-hover animate-fade-in-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="relative">
                 <img
-                  src={project.image}
-                  alt={project.name}
+                  src={projeto.imagem}
+                  alt={projeto.nome}
                   className="w-full h-48 object-cover"
                 />
-                {project.featured && (
+                {projeto.destaque && (
                   <div className="absolute top-3 right-3 bg-green-accent text-white px-2 py-1 rounded-full text-xs font-medium">
                     Destaque
                   </div>
@@ -83,13 +81,13 @@ const Projects = () => {
               </div>
 
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-3">{project.name}</h3>
+                <h3 className="text-xl font-bold mb-3">{projeto.nome}</h3>
                 <p className="text-gray-400 mb-4 text-sm leading-relaxed">
-                  {project.description}
+                  {projeto.descricao}
                 </p>
 
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech: any, techIndex: any) => (
+                  {projeto.tecnologias?.map((tech: any, techIndex: any) => (
                     <span
                       key={techIndex}
                       className="bg-green-accent/10 text-green-accent px-2 py-1 rounded-lg text-xs"
@@ -101,7 +99,7 @@ const Projects = () => {
 
                 <div className="flex gap-3">
                   <a
-                    href={project.githubUrl}
+                    href={projeto.githuburl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-gray-400 hover:text-green-accent transition-colors text-sm"
@@ -110,7 +108,7 @@ const Projects = () => {
                     Código
                   </a>
                   <a
-                    href={project.liveUrl}
+                    href={projeto.liveurl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-gray-400 hover:text-green-accent transition-colors text-sm"

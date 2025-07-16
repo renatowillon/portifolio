@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send, Github, Linkedin } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { urlApi } from "@/libs/utils";
+import { toast } from "sonner";
 
 const Contact = () => {
-  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -12,21 +12,34 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     setIsSubmitting(true);
 
     // Simular envio de email
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    toast({
-      title: "Mensagem enviada com sucesso!",
+    setFormData({ name: "", email: "", message: "" });
+    toast.message("Mensagem enviada com sucesso!", {
       description: "Obrigado pelo seu contato. Responderei em breve!",
     });
-
-    setFormData({ name: "", email: "", message: "" });
     setIsSubmitting(false);
   };
+
+  async function handleSendEmail(e: React.FormEvent) {
+    try {
+      handleSubmit();
+      e.preventDefault();
+      await fetch(urlApi, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+    } catch (error) {
+      toast.error("Erro ao enviar o email");
+    }
+  }
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -127,7 +140,7 @@ const Contact = () => {
 
           <div className="animate-slide-in-right">
             <form
-              onSubmit={handleSubmit}
+              onSubmit={handleSendEmail}
               className="bg-dark-blue rounded-xl p-8 space-y-6"
             >
               <h3 className="text-2xl font-bold mb-6">Envie uma Mensagem</h3>

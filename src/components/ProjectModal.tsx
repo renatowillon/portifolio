@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { X, Plus } from "lucide-react";
-import { Project } from "@/types/projects";
+import { Project } from "@/types/projetos";
 
 interface ProjectModalProps {
   isOpen: boolean;
