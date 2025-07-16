@@ -80,7 +80,7 @@ const Hero = () => {
             <div className="relative z-10">
               <div className="w-80 h-80 mx-auto rounded-full overflow-hidden border-4 border-green-accent/20 shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
+                  src="assets/renatoWillon.png"
                   alt="Renato Willon"
                   className="w-full h-full object-cover"
                 />
