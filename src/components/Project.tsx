@@ -4,6 +4,7 @@ import { Github, ExternalLink } from "lucide-react";
 import ProjectModal from "./ProjectModal";
 import { Projeto } from "@/types/projetos";
 import { initialProjects } from "@/models/Projects";
+import { toast } from "sonner";
 
 const Projects = () => {
   const [projetos, setProjetos] = useState<Projeto[]>([]);
@@ -29,7 +30,7 @@ const Projects = () => {
       setShowModal(true);
       setAdminInput("");
     } else {
-      alert("Senha incorreta!");
+      toast.info("Senha incorreta!");
       setAdminInput("");
     }
   };
