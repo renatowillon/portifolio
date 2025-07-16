@@ -1,0 +1,68 @@
+export const experiences = [
+  {
+    title: "Desenvolvedor Front-End Júnior",
+    company: "BarberIO",
+    period: "2025 - Presente",
+    location: "João Pessoa, PB",
+    type: "Projeto Pessoal",
+    description: [
+      "Criação de plataforma de agendamentos para barbearias com dashboard de gerenciamento",
+      "Integração com sistema de notificações email para alertar clientes sobre agendamentos",
+      "Formulários com validações condicionais e campos dinâmicos para cadastro de barbeiros",
+      "Design responsivo com foco em usabilidade para uso em dispositivos móveis",
+    ],
+    technologies: [
+      "Next.js",
+      "React",
+      "TailwindCSS",
+      "TypeScript",
+      "Zod",
+      "React Hook Form",
+      "Nodemailer",
+    ],
+  },
+  {
+    title: "Desenvolvedor Front-End Júnior",
+    company: "wFinance",
+    period: "2025 - Presente",
+    location: "João Pessoa, PB",
+    type: "Projeto Pessoal",
+    description: [
+      "Desenvolvimento de um sistema SaaS de controle financeiro com dashboard interativo",
+      "Implementação de gráficos e relatórios visuais para entradas e saídas mensais",
+      "Criação de páginas otimizadas com SEO e metadata para melhor ranqueamento",
+      "Controle intuitivo de movimentações financeiras com validações em tempo real",
+    ],
+    technologies: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Zod",
+      "TailwindCSS",
+      "Prisma",
+      "PostgreSQL",
+    ],
+  },
+
+  {
+    title: "Desenvolvedor Front-End Júnior",
+    company: "PedidoZAP",
+    period: "2025 - Presente",
+    location: "João Pessoa, PB",
+    type: "Projeto Pessoal",
+    description: [
+      "Desenvolvimento de solução web para automatizar pedidos via WhatsApp para pequenos comércios",
+      "Criação de catálogo interativo com envio automático de mensagens pré-formatadas",
+      "Melhoria na experiência do usuário com fluxo simplificado de pedido e checkout",
+      "Implementação de SEO e metadata para facilitar indexação e divulgação dos catálogos",
+    ],
+    technologies: [
+      "Next.js",
+      "React",
+      "TailwindCSS",
+      "TypeScript",
+      "WhatsApp API",
+      "Vercel",
+    ],
+  },
+];

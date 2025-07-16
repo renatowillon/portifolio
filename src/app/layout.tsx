@@ -6,8 +6,8 @@ import { Toaster } from "sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "wDev | Portfólio",
-  description: "Meu Portfólio ❤️",
+  title: "<RenatoWillon />",
+  description: "Desenvolvedor FrontEnd",
 };
 
 export default function RootLayout({
@@ -18,11 +18,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="scroll-smooth">
       <body className="bg-slate-950 text-zinc-100">
-        
-          {children}
-
+        <Toaster position="bottom-right" expand={false} richColors />
+        {children}
       </body>
-
     </html>
   );
 }
