@@ -31,7 +31,7 @@ const Testimonials = () => {
       <div className="container-custom">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            O que dizem sobre{" "}
+            O que dizem sobre
             <span className="text-gradient">meu trabalho</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
@@ -57,7 +57,7 @@ const Testimonials = () => {
               </div>
 
               <blockquote className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6 italic">
-                "{currentTestimonial.content}"
+                {currentTestimonial.content}
               </blockquote>
 
               <div className="flex justify-center mb-4">
