@@ -1,23 +1,23 @@
 "use client";
 import { useState } from "react";
 import { X, Plus } from "lucide-react";
-import { Project } from "@/types/projetos";
+import { Projeto } from "@/types/projetos";
 
 interface ProjectModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (project: Omit<Project, "id">) => void;
+  onSubmit: (project: Omit<Projeto, "id">) => void;
 }
 
 const ProjectModal = ({ isOpen, onClose, onSubmit }: ProjectModalProps) => {
   const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-    image: "",
-    technologies: "",
-    githubUrl: "",
-    liveUrl: "",
-    featured: false,
+    nome: "",
+    descricao: "",
+    imagem: "",
+    tecnologias: "",
+    githuburl: "",
+    liveurl: "",
+    destaque: false,
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -25,18 +25,18 @@ const ProjectModal = ({ isOpen, onClose, onSubmit }: ProjectModalProps) => {
 
     const project = {
       ...formData,
-      technologies: formData.technologies.split(",").map((tech) => tech.trim()),
+      tecnologias: formData.tecnologias.split(",").map((tech) => tech.trim()),
     };
 
     onSubmit(project);
     setFormData({
-      name: "",
-      description: "",
-      image: "",
-      technologies: "",
-      githubUrl: "",
-      liveUrl: "",
-      featured: false,
+      nome: "",
+      descricao: "",
+      imagem: "",
+      tecnologias: "",
+      githuburl: "",
+      liveurl: "",
+      destaque: false,
     });
     onClose();
   };
@@ -61,7 +61,7 @@ const ProjectModal = ({ isOpen, onClose, onSubmit }: ProjectModalProps) => {
             <input
               type="text"
               required
-              value={formData.name}
+              value={formData.nome}
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, name: e.target.value }))
               }
@@ -74,7 +74,7 @@ const ProjectModal = ({ isOpen, onClose, onSubmit }: ProjectModalProps) => {
             <textarea
               required
               rows={3}
-              value={formData.description}
+              value={formData.descricao}
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
@@ -92,7 +92,7 @@ const ProjectModal = ({ isOpen, onClose, onSubmit }: ProjectModalProps) => {
             <input
               type="url"
               required
-              value={formData.image}
+              value={formData.imagem}
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, image: e.target.value }))
               }
@@ -108,7 +108,7 @@ const ProjectModal = ({ isOpen, onClose, onSubmit }: ProjectModalProps) => {
               type="text"
               required
               placeholder="React, TypeScript, TailwindCSS"
-              value={formData.technologies}
+              value={formData.tecnologias}
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
@@ -124,7 +124,7 @@ const ProjectModal = ({ isOpen, onClose, onSubmit }: ProjectModalProps) => {
             <input
               type="url"
               required
-              value={formData.githubUrl}
+              value={formData.githuburl}
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, githubUrl: e.target.value }))
               }
@@ -139,7 +139,7 @@ const ProjectModal = ({ isOpen, onClose, onSubmit }: ProjectModalProps) => {
             <input
               type="url"
               required
-              value={formData.liveUrl}
+              value={formData.liveurl}
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, liveUrl: e.target.value }))
               }
@@ -151,7 +151,7 @@ const ProjectModal = ({ isOpen, onClose, onSubmit }: ProjectModalProps) => {
             <input
               type="checkbox"
               id="featured"
-              checked={formData.featured}
+              checked={formData.destaque}
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, featured: e.target.checked }))
               }
