@@ -1,0 +1,51 @@
+export const certifications = [
+  {
+    name: "Formação React",
+    provider: "Alura",
+    year: "2023",
+    logo: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=100&h=100&fit=crop",
+    description:
+      "Curso completo de React com hooks, context API e melhores práticas",
+    url: "https://cursos.alura.com.br/formacao-react",
+  },
+  {
+    name: "UI Design Avançado",
+    provider: "Origamid",
+    year: "2023",
+    logo: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=100&h=100&fit=crop",
+    description: "Design de interfaces modernas e experiência do usuário",
+    url: "https://origamid.com/curso/ui-design",
+  },
+  {
+    name: "JavaScript ES6+",
+    provider: "Rocketseat",
+    year: "2022",
+    logo: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=100&h=100&fit=crop",
+    description: "JavaScript moderno, async/await, modules e muito mais",
+    url: "https://rocketseat.com.br/",
+  },
+  {
+    name: "TypeScript do Zero",
+    provider: "Udemy",
+    year: "2022",
+    logo: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=100&h=100&fit=crop",
+    description: "TypeScript aplicado ao desenvolvimento React",
+    url: "https://udemy.com/",
+  },
+  {
+    name: "Next.js & React",
+    provider: "Vercel",
+    year: "2023",
+    logo: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=100&h=100&fit=crop",
+    description: "Framework React para produção com SSR e SSG",
+    url: "https://nextjs.org/learn",
+  },
+  {
+    name: "TailwindCSS Mastery",
+    provider: "TailwindLabs",
+    year: "2023",
+    logo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+    description: "Utility-first CSS framework para desenvolvimento ágil",
+    url: "https://tailwindcss.com/",
+  },
+];
