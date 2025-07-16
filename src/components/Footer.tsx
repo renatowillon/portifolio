@@ -12,7 +12,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-dark-blue border-t border-navy">
+    <footer className="bg-dark-blue border-t border-navy section-padding">
       <div className="container-custom py-12">
         <div className="grid md:grid-cols-3 gap-8">
           <div>
