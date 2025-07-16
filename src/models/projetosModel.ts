@@ -1,5 +1,5 @@
 import { db } from "@/lib/prisma";
-import { Projeto, ProjetoInput } from "@/types/projetos";
+import { ProjetoInput } from "@/types/projetos";
 
 export const getAllProjetos = () => db.projetos.findMany();
 
