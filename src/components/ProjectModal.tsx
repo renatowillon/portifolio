@@ -45,7 +45,7 @@ const ProjectModal = ({ isOpen, onClose, onSubmit }: ProjectModalProps) => {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-navy rounded-lg p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
+      <div className="bg-navy rounded-lg p-6 w-full max-w-xl max-h-[90vh] overflow-y-auto">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-xl font-bold">Adicionar Novo Projeto</h3>
           <button onClick={onClose} className="text-gray-400 hover:text-white">
@@ -54,19 +54,35 @@ const ProjectModal = ({ isOpen, onClose, onSubmit }: ProjectModalProps) => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium mb-2">
-              Nome do Projeto
-            </label>
-            <input
-              type="text"
-              required
-              value={formData.nome}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, name: e.target.value }))
-              }
-              className="w-full px-3 py-2 bg-dark-blue border border-gray-600 rounded-lg focus:outline-none focus:border-green-accent"
-            />
+          <div className="w-full flex gap-4 ">
+            <div className="w-full">
+              <label className="block text-sm font-medium mb-2">
+                Nome do Projeto
+              </label>
+              <input
+                type="text"
+                required
+                value={formData.nome}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, name: e.target.value }))
+                }
+                className="w-full px-3 py-2 bg-dark-blue border border-gray-600 rounded-lg focus:outline-none focus:border-green-accent"
+              />
+            </div>
+            <div className="w-full">
+              <label className="block text-sm font-medium mb-2">
+                URL da Imagem
+              </label>
+              <input
+                type="url"
+                required
+                value={formData.imagem}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, image: e.target.value }))
+                }
+                className="w-full px-3 py-2 bg-dark-blue border border-gray-600 rounded-lg focus:outline-none focus:border-green-accent"
+              />
+            </div>
           </div>
 
           <div>
@@ -80,21 +96,6 @@ const ProjectModal = ({ isOpen, onClose, onSubmit }: ProjectModalProps) => {
                   ...prev,
                   description: e.target.value,
                 }))
-              }
-              className="w-full px-3 py-2 bg-dark-blue border border-gray-600 rounded-lg focus:outline-none focus:border-green-accent"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">
-              URL da Imagem
-            </label>
-            <input
-              type="url"
-              required
-              value={formData.imagem}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, image: e.target.value }))
               }
               className="w-full px-3 py-2 bg-dark-blue border border-gray-600 rounded-lg focus:outline-none focus:border-green-accent"
             />

@@ -5,6 +5,7 @@ import ProjectModal from "./ProjectModal";
 import { Projeto } from "@/types/projetos";
 import { initialProjects } from "@/models/Projects";
 import { toast } from "sonner";
+import { redirect } from "next/navigation";
 
 const Projects = () => {
   const [projetos, setProjetos] = useState<Projeto[]>([]);
