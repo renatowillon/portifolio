@@ -14,7 +14,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Plus, Edit, Trash2, ExternalLink, Github } from "lucide-react";
-import { Projeto } from "@/types/projetos";
+import { Projeto, ProjetoInput } from "@/types/projetos";
 
 const AdminProjects = () => {
   const [projects, setProjects] = useState<Projeto[]>([]);
@@ -48,8 +48,7 @@ const AdminProjects = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const projectData: Projeto = {
-      id: editingProject?.id || Date.now().toString(),
+    const projectData: ProjetoInput = {
       nome: formData.name,
       descricao: formData.description,
       imagem:
@@ -89,7 +88,7 @@ const AdminProjects = () => {
     setIsDialogOpen(true);
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete = (id: number) => {
     if (confirm("Tem certeza que deseja excluir este projeto?")) {
       const updatedProjects = projects.filter((p) => p.id !== id);
       saveProjects(updatedProjects);
@@ -269,7 +268,7 @@ const AdminProjects = () => {
                   <Button
                     size="sm"
                     variant="outline"
-                    onClick={() => handleDelete(String(project.id))}
+                    onClick={() => handleDelete(Number(project.id))}
                     className="h-8 w-8 p-0 hover:bg-red-600 hover:border-red-600"
                   >
                     <Trash2 size={14} />

@@ -1,5 +1,5 @@
 export interface Projeto {
-  id?: number | string;
+  id?: number;
   nome: string;
   descricao: string;
   imagem: string;

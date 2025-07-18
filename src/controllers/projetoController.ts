@@ -1,4 +1,5 @@
 import { db } from "@/lib/prisma";
+import { Projeto, ProjetoInput } from "@/types/projetos";
 
 // GET
 export const pegarTodosProjetos = async () => {
@@ -13,21 +14,12 @@ export const pegarUmProjeto = async (id: number) => {
 };
 
 //POST
-export const adicionarProjeto = async (data: {
-  id: number;
-  nome: string;
-  descricao: string;
-  imagem: string;
-  tecnologias: string[];
-  githuburl: string;
-  liveurl: string;
-  destaque: boolean;
-}) => {
+export const adicionarProjeto = async (data: Projeto) => {
   return db.projetos.create({ data });
 };
 
 //PUT
-export const atualizarProjeto = async (id: number, data: any) => {
+export const atualizarProjeto = async (id: number, data: Projeto) => {
   return db.projetos.update({ where: { id }, data });
 };
 

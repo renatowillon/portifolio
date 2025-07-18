@@ -2,7 +2,6 @@ import {
   atualizarProjeto,
   pegarUmProjeto,
 } from "@/controllers/projetoController";
-import { error } from "console";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
@@ -32,7 +31,7 @@ export async function PUT(
       );
     }
     const projetoAtualizado = await atualizarProjeto(id, data);
-    return NextResponse.json(projetoAtualizado, { status: 201 });
+    return NextResponse.json(projetoAtualizado, { status: 200 });
   } catch (error) {
     console.error("erro ao atualizar projeto:", error);
     return NextResponse.json(

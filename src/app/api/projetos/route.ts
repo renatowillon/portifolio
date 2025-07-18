@@ -2,6 +2,7 @@ import {
   adicionarProjeto,
   pegarTodosProjetos,
 } from "@/controllers/projetoController";
+import { Projeto } from "@/types/projetos";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
@@ -10,13 +11,21 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+  const projeto: Projeto = await req.json();
+
   try {
-    const ProjetoParaCriar = await req.json();
-    const CriarProjeto = await adicionarProjeto(ProjetoParaCriar);
+    const CriarProjeto: Projeto = await adicionarProjeto(projeto);
     return NextResponse.json(CriarProjeto, { status: 201 });
   } catch (error) {
+    if (!projeto.nome) {
+      return NextResponse.json(
+        { error: " o nome não pode ser vazio" },
+        { status: 400 }
+      );
+    }
     return NextResponse.json(
-      { error: "preencha todos os dados" },
+      { error: `preencha todos os dados` },
+
       { status: 400 }
     );
   }
