@@ -2,7 +2,9 @@ import { db } from "@/lib/prisma";
 
 // GET
 export const pegarTodosProjetos = async () => {
-  return db.projetos.findMany();
+  return db.projetos.findMany({
+    orderBy: [{ destaque: "desc" }, { id: "asc" }],
+  });
 };
 
 //GET UM Projeto
