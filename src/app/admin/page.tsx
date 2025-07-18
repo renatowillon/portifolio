@@ -15,11 +15,26 @@ import AdminProjects from "@/components/admin/AdminProjects";
 
 import AdminCertifications from "@/components/admin/AdminCertifications";
 import AdminTestimonials from "@/components/admin/AdminTestimonials";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import AdminExperiences from "@/components/admin/AdminExperiences";
+import { useAuth } from "@/hooks/useAuth";
+import { useEffect } from "react";
 
 const Admin = () => {
   const router = useRouter();
+  const { isAuthenticated, checkAuthentication } = useAuth();
+
+  useEffect(() => {
+    const isLoggedIn = checkAuthentication();
+
+    if (!isLoggedIn) {
+      router.replace("/"); // redireciona para a home
+    }
+  });
+
+  if (!isAuthenticated) {
+    return null; // ou um carregando opcional
+  }
 
   return (
     <div className="min-h-screen bg-dark-blue">

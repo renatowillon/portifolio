@@ -8,7 +8,7 @@ export const useAuth = () => {
 
   useEffect(() => {
     checkAuthentication();
-  }, []);
+  });
 
   const checkAuthentication = () => {
     const token = localStorage.getItem(AUTH_TOKEN_KEY);

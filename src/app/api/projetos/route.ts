@@ -5,11 +5,13 @@ import {
 import { Projeto } from "@/types/projetos";
 import { NextRequest, NextResponse } from "next/server";
 
+//API PEGAR TODOS PROJETOS
 export async function GET() {
   const allProjetos = await pegarTodosProjetos();
   return NextResponse.json(allProjetos, { status: 200 });
 }
 
+//API CADASTRAR PROJETO NOVO
 export async function POST(req: NextRequest) {
   const projeto: Projeto = await req.json();
 

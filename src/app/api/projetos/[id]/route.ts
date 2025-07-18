@@ -5,6 +5,7 @@ import {
 } from "@/controllers/projetoController";
 import { NextRequest, NextResponse } from "next/server";
 
+//API PEGAR 1 PROJETO
 export async function GET(
   _req: NextRequest,
   { params }: { params: { id: string } }
@@ -13,6 +14,7 @@ export async function GET(
   return NextResponse.json(projeto, { status: 200 });
 }
 
+//API ATUALIZAR PROJETO
 export async function PUT(
   req: NextRequest,
   { params }: { params: { id: number } }
@@ -41,6 +43,7 @@ export async function PUT(
     );
   }
 }
+//API DELETE PROJETO
 export async function DELETE(
   _req: NextRequest,
   { params }: { params: { id: string } }
