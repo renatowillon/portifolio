@@ -1,5 +1,6 @@
 import {
   atualizarProjeto,
+  deletarProjeto,
   pegarUmProjeto,
 } from "@/controllers/projetoController";
 import { NextRequest, NextResponse } from "next/server";
@@ -39,4 +40,11 @@ export async function PUT(
       { status: 500 }
     );
   }
+}
+export async function DELETE(
+  _req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const projeto = await deletarProjeto(Number(params.id));
+  return NextResponse.json(projeto, { status: 200 });
 }

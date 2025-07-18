@@ -15,9 +15,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Plus, Edit, Trash2, ExternalLink, Github } from "lucide-react";
 import { Projeto, ProjetoInput } from "@/types/projetos";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  atualizarProjeto,
+  criarProjeto,
+  deletarProjeto,
+  fetchProjetos,
+} from "@/libs/fetchers";
 
 const AdminProjects = () => {
-  const [projects, setProjects] = useState<Projeto[]>([]);
   const [editingProject, setEditingProject] = useState<Projeto | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -29,21 +35,38 @@ const AdminProjects = () => {
     liveUrl: "",
   });
 
-  useEffect(() => {
-    loadProjects();
-  }, []);
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["projetos"],
+    queryFn: fetchProjetos,
+    staleTime: 5 * (60 * 1000), //5 minutos
+  });
 
-  const loadProjects = () => {
-    const savedProjects = localStorage.getItem("portfolio_projects");
-    if (savedProjects) {
-      setProjects(JSON.parse(savedProjects));
-    }
-  };
+  const queryClient = useQueryClient();
 
-  const saveProjects = (updatedProjects: Projeto[]) => {
-    localStorage.setItem("portfolio_projects", JSON.stringify(updatedProjects));
-    setProjects(updatedProjects);
-  };
+  const criarMutation = useMutation({
+    mutationFn: criarProjeto,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["projetos"] }),
+    onError: (error) => {
+      console.error("Erro ao criar projeto:", error);
+    },
+  });
+
+  const atualizarMutation = useMutation({
+    mutationFn: ({ id, projeto }: { id: number; projeto: Projeto }) =>
+      atualizarProjeto(id, projeto),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["projetos"] }),
+    onError: (error) => {
+      console.error("Erro ao atualizar projeto:", error);
+    },
+  });
+
+  const deletarMutation = useMutation({
+    mutationFn: deletarProjeto,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["projetos"] }),
+    onError: (error) => {
+      console.error("Erro ao deletar projeto:", error);
+    },
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,12 +87,12 @@ const AdminProjects = () => {
     };
 
     if (editingProject) {
-      const updatedProjects = projects.map((p) =>
-        p.id === editingProject.id ? projectData : p
-      );
-      saveProjects(updatedProjects);
+      atualizarMutation.mutate({
+        id: editingProject.id!,
+        projeto: projectData,
+      });
     } else {
-      saveProjects([...projects, projectData]);
+      criarMutation.mutate(projectData);
     }
 
     resetForm();
@@ -90,8 +113,7 @@ const AdminProjects = () => {
 
   const handleDelete = (id: number) => {
     if (confirm("Tem certeza que deseja excluir este projeto?")) {
-      const updatedProjects = projects.filter((p) => p.id !== id);
-      saveProjects(updatedProjects);
+      deletarMutation.mutate(id);
     }
   };
 
@@ -244,7 +266,7 @@ const AdminProjects = () => {
 
       {/* Projects List */}
       <div className="grid gap-4">
-        {projects.map((project) => (
+        {data?.map((project: Projeto) => (
           <Card key={project.id} className="bg-dark-blue border-gray-600">
             <CardHeader className="pb-3">
               <div className="flex items-start justify-between">
@@ -316,7 +338,7 @@ const AdminProjects = () => {
           </Card>
         ))}
 
-        {projects.length === 0 && (
+        {data?.length === 0 && (
           <div className="text-center py-8 text-gray-400">
             Nenhum projeto cadastrado. Clique em &quot;Novo Projeto&quot; para
             adicionar.
