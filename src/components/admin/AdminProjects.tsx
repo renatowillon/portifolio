@@ -13,7 +13,14 @@ import {
 } from "@/components/ui/dialog";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Edit, Trash2, ExternalLink, Github } from "lucide-react";
+import {
+  Plus,
+  Edit,
+  Trash2,
+  ExternalLink,
+  Github,
+  DivideSquare,
+} from "lucide-react";
 import { Projeto, ProjetoInput } from "@/types/projetos";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
@@ -22,6 +29,7 @@ import {
   deletarProjeto,
   fetchProjetos,
 } from "@/libs/fetchers";
+import { Switch } from "../ui/switch";
 
 const AdminProjects = () => {
   const [editingProject, setEditingProject] = useState<Projeto | null>(null);
@@ -33,6 +41,7 @@ const AdminProjects = () => {
     technologies: "",
     githubUrl: "",
     liveUrl: "",
+    destaque: false,
   });
 
   const { data, isLoading, error } = useQuery({
@@ -83,7 +92,7 @@ const AdminProjects = () => {
         .filter(Boolean),
       githuburl: formData.githubUrl,
       liveurl: formData.liveUrl,
-      destaque: true,
+      destaque: formData.destaque,
     };
 
     if (editingProject) {
@@ -107,6 +116,7 @@ const AdminProjects = () => {
       technologies: project.tecnologias.join(", "),
       githubUrl: project.githuburl,
       liveUrl: project.liveurl,
+      destaque: project.destaque,
     });
     setIsDialogOpen(true);
   };
@@ -125,6 +135,7 @@ const AdminProjects = () => {
       technologies: "",
       githubUrl: "",
       liveUrl: "",
+      destaque: false,
     });
     setEditingProject(null);
     setIsDialogOpen(false);
@@ -135,7 +146,10 @@ const AdminProjects = () => {
       {/* Add New Project Button */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogTrigger asChild>
-          <Button className="bg-green-accent hover:bg-green-600 text-white">
+          <Button
+            onClick={resetForm}
+            className="bg-green-accent hover:bg-green-600 text-white"
+          >
             <Plus size={18} className="mr-2" />
             Novo Projeto
           </Button>
@@ -243,6 +257,17 @@ const AdminProjects = () => {
                 />
               </div>
             </div>
+            <div className="flex items-center justify-end gap-4">
+              <Switch
+                id="destaque"
+                checked={formData.destaque}
+                onCheckedChange={(checked) =>
+                  setFormData({ ...formData, destaque: checked })
+                }
+                className="bg-green-accent text-green-accent "
+              />
+              <Label htmlFor="destaque">Destaque</Label>
+            </div>
 
             <div className="flex gap-3 pt-4">
               <Button
@@ -310,28 +335,36 @@ const AdminProjects = () => {
                   </Badge>
                 ))}
               </div>
-              <div className="flex gap-3 text-sm">
-                {project.githuburl && (
-                  <a
-                    href={project.githuburl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-green-accent flex items-center gap-1"
-                  >
-                    <Github size={14} />
-                    GitHub
-                  </a>
-                )}
-                {project.liveurl && (
-                  <a
-                    href={project.liveurl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-green-accent flex items-center gap-1"
-                  >
-                    <ExternalLink size={14} />
-                    Demo
-                  </a>
+              <div className="flex items-center justify-between gap-3 text-sm">
+                <div className="flex gap-3">
+                  {project.githuburl && (
+                    <a
+                      href={project.githuburl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-green-accent flex items-center gap-1"
+                    >
+                      <Github size={14} />
+                      GitHub
+                    </a>
+                  )}
+                  {project.liveurl && (
+                    <a
+                      href={project.liveurl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-green-accent flex items-center gap-1"
+                    >
+                      <ExternalLink size={14} />
+                      Demo
+                    </a>
+                  )}
+                </div>
+
+                {project.destaque && (
+                  <div className="bg-green-accent text-white px-2 py-1 self-end rounded-full text-xs font-medium">
+                    Destaque
+                  </div>
                 )}
               </div>
             </CardContent>
