@@ -316,7 +316,7 @@ const AdminProjects = () => {
                     size="sm"
                     variant="outline"
                     onClick={() => handleDelete(Number(project.id))}
-                    className="h-8 w-8 p-0 hover:bg-red-600 hover:border-red-600"
+                    className="h-8 w-8 p-0 hover:text-white hover:bg-red-500 hover:border-red-500"
                   >
                     <Trash2 size={14} />
                   </Button>

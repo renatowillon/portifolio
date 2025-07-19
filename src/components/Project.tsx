@@ -1,52 +1,16 @@
 "use client";
-import { useState, useEffect } from "react";
 import { Github, ExternalLink } from "lucide-react";
-import ProjectModal from "./ProjectModal";
 import { Projeto } from "@/types/projetos";
-import { initialProjects } from "@/models/Projects";
-import { toast } from "sonner";
+import { useQuery } from "@tanstack/react-query";
+import { fetchProjetos } from "@/libs/fetchers";
 
 const Projects = () => {
-  const [projetos, setProjetos] = useState<Projeto[]>([]);
-  const [showModal, setShowModal] = useState(false);
-  const [adminInput, setAdminInput] = useState("");
-
-  useEffect(() => {
-    const savedProjects = localStorage.getItem("renatoPortfolioProjects");
-    if (savedProjects) {
-      setProjetos(JSON.parse(savedProjects));
-    } else {
-      setProjetos(initialProjects);
-      localStorage.setItem(
-        "renatoPortfolioProjects",
-        JSON.stringify(initialProjects)
-      );
-    }
-  }, []);
-
-  const handleAdminAccess = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (adminInput === "admin123") {
-      setShowModal(true);
-      setAdminInput("");
-    } else {
-      toast.info("Senha incorreta!");
-      setAdminInput("");
-    }
-  };
-
-  const handleAddProject = (newProject: Omit<Projeto, "id">) => {
-    const projeto: Projeto = {
-      ...newProject,
-    };
-
-    const updatedProjects = [...projetos, projeto];
-    setProjetos(updatedProjects);
-    localStorage.setItem(
-      "renatoPortfolioProjects",
-      JSON.stringify(updatedProjects)
-    );
-  };
+  //PEGAR PROJETOS
+  const { data } = useQuery({
+    queryKey: ["projetos"],
+    queryFn: fetchProjetos,
+    staleTime: 5 * (60 * 1000),
+  });
 
   return (
     <section id="projects" className="section-padding">
@@ -62,7 +26,7 @@ const Projects = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projetos.map((projeto, index) => (
+          {data?.map((projeto: Projeto, index: any) => (
             <div
               key={projeto.id}
               className="bg-navy rounded-xl overflow-hidden card-hover animate-fade-in-up"
@@ -122,25 +86,6 @@ const Projects = () => {
             </div>
           ))}
         </div>
-
-        {/* Admin Access Form - Hidden */}
-        <div className="mt-16 text-center">
-          <form onSubmit={handleAdminAccess} className="inline-flex">
-            <input
-              type="password"
-              value={adminInput}
-              onChange={(e) => setAdminInput(e.target.value)}
-              placeholder="Digite algo..."
-              className="px-3 py-1 text-xs bg-transparent border-b border-gray-600 focus:outline-none focus:border-green-accent text-gray-600"
-            />
-          </form>
-        </div>
-
-        <ProjectModal
-          isOpen={showModal}
-          onClose={() => setShowModal(false)}
-          onSubmit={handleAddProject}
-        />
       </div>
     </section>
   );
