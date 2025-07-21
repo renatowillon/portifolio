@@ -17,7 +17,7 @@ export const initialProjects: Projeto[] = [
       "Zod",
     ],
     githuburl: "https://github.com/renatowillon/barberio",
-    liveurl: "https://barberio-demo.vercel.app",
+    liveurl: "https://barberio.vercel.app",
     destaque: true,
   },
   {
