@@ -1,6 +1,6 @@
 export const experiences = [
   {
-    title: "Desenvolvedor Front-End Júnior",
+    title: "Desenvolvedor Front-End",
     company: "BarberIO",
     period: "2025 - Presente",
     location: "João Pessoa, PB",
@@ -22,7 +22,7 @@ export const experiences = [
     ],
   },
   {
-    title: "Desenvolvedor Front-End Júnior",
+    title: "Desenvolvedor Front-End",
     company: "wFinance",
     period: "2025 - Presente",
     location: "João Pessoa, PB",
@@ -45,7 +45,7 @@ export const experiences = [
   },
 
   {
-    title: "Desenvolvedor Front-End Júnior",
+    title: "Desenvolvedor Front-End",
     company: "PedidoZAP",
     period: "2025 - Presente",
     location: "João Pessoa, PB",
