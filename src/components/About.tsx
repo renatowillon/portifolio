@@ -48,7 +48,7 @@ const About = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-6 animate-fade-in-up">
             <p className="text-lg text-gray-300 leading-relaxed">
-              Sou um desenvolvedor front-end júnior com uma paixão genuína por
+              Sou um desenvolvedor front-end com uma paixão genuína por
               transformar ideias em realidade digital. Minha jornada no
               desenvolvimento começou com curiosidade sobre como os sites
               funcionam, e hoje me especializei em criar interfaces modernas e
