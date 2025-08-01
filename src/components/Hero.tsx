@@ -25,7 +25,7 @@ const Hero = () => {
                 Desenvolvedor
                 <span className="text-gradient"> Front-End</span>
                 <br />
-                Júnior
+                &lt;/&gt;
               </h1>
               <p className="text-xl text-gray-400 max-w-lg">
                 Criando experiências digitais incríveis com React, Next.js e
