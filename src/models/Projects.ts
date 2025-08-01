@@ -37,7 +37,7 @@ export const initialProjects: Projeto[] = [
       "Prisma",
     ],
     githuburl: "https://github.com/renatowillon/finance-ai",
-    liveurl: "#",
+    liveurl: "https://wfinance-ia.vercel.app/login",
     destaque: true,
   },
   {
