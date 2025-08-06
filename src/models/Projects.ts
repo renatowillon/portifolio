@@ -16,8 +16,8 @@ export const initialProjects: Projeto[] = [
       "React Hook Form",
       "Zod",
     ],
-    githuburl: "https://github.com/renatowillon/barberio",
     liveurl: "https://barberio.vercel.app",
+    githuburl: "https://github.com/renatowillon/barberio",
     destaque: true,
   },
   {
