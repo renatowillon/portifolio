@@ -1,5 +1,5 @@
 import { db } from "@/lib/prisma";
-import { Projeto, ProjetoInput } from "@/types/projetos";
+import { Projeto } from "@/types/projetos";
 
 // GET
 export const pegarTodosProjetos = async () => {

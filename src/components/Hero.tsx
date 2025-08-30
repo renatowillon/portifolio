@@ -24,8 +24,6 @@ const Hero = () => {
               <h1 className="text-4xl md:text-6xl font-bold leading-tight">
                 Desenvolvedor
                 <span className="text-gradient"> Front-End</span>
-                <br />
-                Júnior
               </h1>
               <p className="text-xl text-gray-400 max-w-lg">
                 Criando experiências digitais incríveis com React, Next.js e

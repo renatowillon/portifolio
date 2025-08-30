@@ -12,95 +12,141 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Plus, Edit, Trash2, Calendar } from "lucide-react";
-
-interface Experience {
-  id: string;
-  position: string;
-  company: string;
-  period: string;
-  description: string;
-}
+import {
+  Plus,
+  Edit,
+  Trash2,
+  Calendar,
+  MapPin,
+  Briefcase,
+  Code,
+} from "lucide-react";
+import { Experiencias } from "@prisma/client";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  atualizarExperiencia,
+  criarExperiencia,
+  deletarExperiencia,
+  fetchExperiencias,
+} from "@/libs/fetchers";
 
 const AdminExperiences = () => {
-  const [experiences, setExperiences] = useState<Experience[]>([]);
-  const [editingExperience, setEditingExperience] = useState<Experience | null>(
-    null
-  );
+  type ExperienciaSemId = Omit<Experiencias, "id">;
+  const [experiences, setExperiences] = useState<Experiencias[]>([]);
+  const [editingExperience, setEditingExperience] =
+    useState<Experiencias | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [formData, setFormData] = useState({
-    position: "",
-    company: "",
-    period: "",
-    description: "",
+    titulo: "",
+    empresa: "",
+    periodo: "",
+    localizacao: "",
+    tipo: "",
+    descricao: "",
+    tecnologias: "",
   });
 
-  useEffect(() => {
-    loadExperiences();
-  }, []);
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["experiencias"],
+    queryFn: fetchExperiencias,
+    staleTime: 5 * (60 * 1000), //5 minutos
+  });
 
-  const loadExperiences = () => {
-    const savedExperiences = localStorage.getItem("portfolio_experiences");
-    if (savedExperiences) {
-      setExperiences(JSON.parse(savedExperiences));
-    }
-  };
+  const queryClient = useQueryClient();
 
-  const saveExperiences = (updatedExperiences: Experience[]) => {
-    localStorage.setItem(
-      "portfolio_experiences",
-      JSON.stringify(updatedExperiences)
-    );
-    setExperiences(updatedExperiences);
-  };
+  const criarMutation = useMutation({
+    mutationFn: criarExperiencia,
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ["experiencias"] }),
+    onError: (error) => {
+      console.error("Erro ao criar projeto:", error);
+    },
+  });
+
+  const atualizarMutation = useMutation({
+    mutationFn: ({
+      id,
+      experiencia,
+    }: {
+      id: number;
+      experiencia: ExperienciaSemId;
+    }) => atualizarExperiencia(id, experiencia),
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ["experiencias"] }),
+    onError: (error) => {
+      console.error("Erro ao atualizar projeto:", error);
+    },
+  });
+
+  const deletarMutation = useMutation({
+    mutationFn: deletarExperiencia,
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ["experiencias"] }),
+    onError: (error) => {
+      console.error("Erro ao deletar projeto:", error);
+    },
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const experienceData: Experience = {
-      id: editingExperience?.id || Date.now().toString(),
-      position: formData.position,
-      company: formData.company,
-      period: formData.period,
-      description: formData.description,
+    const experienceData: ExperienciaSemId = {
+      titulo: formData.titulo,
+      descricao: formData.descricao
+        .split(",")
+        .map((exp) => exp.trim())
+        .filter(Boolean),
+      empresa: formData.empresa,
+      localizacao: formData.localizacao,
+      periodo: formData.periodo,
+      tecnologias: formData.tecnologias
+        .split(",")
+        .map((exp) => exp.trim())
+        .filter(Boolean),
+      tipo: formData.tipo,
     };
 
     if (editingExperience) {
-      const updatedExperiences = experiences.map((exp) =>
-        exp.id === editingExperience.id ? experienceData : exp
-      );
-      saveExperiences(updatedExperiences);
+      atualizarMutation.mutate({
+        id: editingExperience.id!,
+        experiencia: experienceData,
+      });
     } else {
-      saveExperiences([...experiences, experienceData]);
+      criarMutation.mutate(experienceData);
     }
 
     resetForm();
   };
 
-  const handleEdit = (experience: Experience) => {
+  const handleEdit = (experience: Experiencias) => {
     setEditingExperience(experience);
     setFormData({
-      position: experience.position,
-      company: experience.company,
-      period: experience.period,
-      description: experience.description,
+      titulo: experience.titulo,
+      descricao: experience.descricao.join(", "),
+      empresa: experience.empresa,
+      localizacao: experience.localizacao,
+      periodo: experience.periodo,
+      tecnologias: experience.tecnologias.join(", "),
+      tipo: experience.tipo,
     });
     setIsDialogOpen(true);
   };
 
-  const handleDelete = (id: string) => {
-    if (confirm("Tem certeza que deseja excluir esta experiência?")) {
-      const updatedExperiences = experiences.filter((exp) => exp.id !== id);
-      saveExperiences(updatedExperiences);
+  const handleDelete = (id: number) => {
+    if (confirm("Tem certeza que deseja excluir este projeto?")) {
+      deletarMutation.mutate(id);
     }
   };
 
   const resetForm = () => {
     setFormData({
-      position: "",
-      company: "",
-      period: "",
-      description: "",
+      titulo: "",
+      empresa: "",
+      periodo: "",
+      localizacao: "",
+      tipo: "",
+      descricao: "",
+      tecnologias: "",
     });
     setEditingExperience(null);
     setIsDialogOpen(false);
@@ -127,30 +173,30 @@ const AdminExperiences = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="position" className="text-gray-300">
+                <Label htmlFor="titulo" className="text-gray-300">
                   Cargo
                 </Label>
                 <Input
-                  id="position"
-                  value={formData.position}
+                  id="titulo"
+                  value={formData.titulo}
                   onChange={(e) =>
-                    setFormData({ ...formData, position: e.target.value })
+                    setFormData({ ...formData, titulo: e.target.value })
                   }
                   className="bg-dark-blue border-gray-600 text-white"
-                  placeholder="Desenvolvedor Frontend Júnior"
+                  placeholder="Desenvolvedor Frontend"
                   required
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="company" className="text-gray-300">
+                <Label htmlFor="empresa" className="text-gray-300">
                   Empresa
                 </Label>
                 <Input
-                  id="company"
-                  value={formData.company}
+                  id="empresa"
+                  value={formData.empresa}
                   onChange={(e) =>
-                    setFormData({ ...formData, company: e.target.value })
+                    setFormData({ ...formData, empresa: e.target.value })
                   }
                   className="bg-dark-blue border-gray-600 text-white"
                   placeholder="Tech Company"
@@ -158,35 +204,80 @@ const AdminExperiences = () => {
                 />
               </div>
             </div>
-
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="periodo" className="text-gray-300">
+                  Período
+                </Label>
+                <Input
+                  id="periodo"
+                  value={formData.periodo}
+                  onChange={(e) =>
+                    setFormData({ ...formData, periodo: e.target.value })
+                  }
+                  className="bg-dark-blue border-gray-600 text-white"
+                  placeholder="Jan 2023 - Atual"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="localizacao" className="text-gray-300">
+                  Localização
+                </Label>
+                <Input
+                  id="localizacao"
+                  value={formData.localizacao}
+                  onChange={(e) =>
+                    setFormData({ ...formData, localizacao: e.target.value })
+                  }
+                  className="bg-dark-blue border-gray-600 text-white"
+                  placeholder="João Pessoa - PB"
+                  required
+                />
+              </div>
+            </div>
             <div className="space-y-2">
-              <Label htmlFor="period" className="text-gray-300">
-                Período
+              <Label htmlFor="tipo" className="text-gray-300">
+                Tipo
               </Label>
               <Input
-                id="period"
-                value={formData.period}
+                id="tipo"
+                value={formData.tipo}
                 onChange={(e) =>
-                  setFormData({ ...formData, period: e.target.value })
+                  setFormData({ ...formData, tipo: e.target.value })
                 }
                 className="bg-dark-blue border-gray-600 text-white"
-                placeholder="Jan 2023 - Atual"
+                placeholder="Projeto Pessoal"
                 required
               />
             </div>
-
             <div className="space-y-2">
-              <Label htmlFor="description" className="text-gray-300">
+              <Label htmlFor="descricao" className="text-gray-300">
                 Descrição
               </Label>
               <Textarea
-                id="description"
-                value={formData.description}
+                id="descricao"
+                value={formData.descricao}
                 onChange={(e) =>
-                  setFormData({ ...formData, description: e.target.value })
+                  setFormData({ ...formData, descricao: e.target.value })
                 }
                 className="bg-dark-blue border-gray-600 text-white"
-                placeholder="Descreva suas responsabilidades e conquistas..."
+                placeholder="Descreva suas responsabilidades e conquistas separado por virgula..."
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="tecnologias" className="text-gray-300">
+                Descrição
+              </Label>
+              <Textarea
+                id="tecnologias"
+                value={formData.tecnologias}
+                onChange={(e) =>
+                  setFormData({ ...formData, tecnologias: e.target.value })
+                }
+                className="bg-dark-blue border-gray-600 text-white"
+                placeholder="Next.js, React, TailwindCSS, TypeScript, Zod, React Hook Form, Nodemailer,"
                 required
               />
             </div>
@@ -213,27 +304,73 @@ const AdminExperiences = () => {
 
       {/* Experiences List */}
       <div className="grid gap-4">
-        {experiences.map((experience) => (
-          <Card key={experience.id} className="bg-dark-blue border-gray-600">
-            <CardHeader className="pb-3">
-              <div className="flex items-start justify-between">
+        {data?.map((exp: Experiencias, index: any) => (
+          <div
+            key={index}
+            className="bg-dark-blue rounded-xl p-6 md:p-8  animate-fade-in-up"
+            style={{ animationDelay: `${index * 0.2}s` }}
+          >
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="md:col-span-1 space-y-4">
                 <div>
-                  <CardTitle className="text-white text-lg">
-                    {experience.position}
-                  </CardTitle>
-                  <p className="text-green-accent font-medium">
-                    {experience.company}
+                  <h3 className="text-xl font-bold text-white mb-2">
+                    {exp.titulo}
+                  </h3>
+                  <p className="text-green-accent font-medium text-lg">
+                    {exp.empresa}
                   </p>
-                  <p className="text-gray-400 text-sm flex items-center gap-1 mt-1">
-                    <Calendar size={14} />
-                    {experience.period}
-                  </p>
+                </div>
+
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-gray-400">
+                    <Calendar size={16} />
+                    <span className="text-sm">{exp.periodo}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-400">
+                    <MapPin size={16} />
+                    <span className="text-sm">{exp.localizacao}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-400">
+                    <Briefcase size={16} />
+                    <span className="text-sm">{exp.tipo}</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {exp.tecnologias.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="bg-green-accent/10 text-green-accent px-2 py-1 rounded-lg text-xs"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="md:col-span-2 flex items-center justify-center gap-4">
+                <div>
+                  <h4 className="text-white font-semibold mb-4 flex items-center gap-2">
+                    <Code size={18} className="text-green-accent" />
+                    Principais Atividades
+                  </h4>
+                  <ul className="space-y-3">
+                    {exp.descricao.map((item, itemIndex) => (
+                      <li
+                        key={itemIndex}
+                        className="flex items-start gap-3 text-gray-300"
+                      >
+                        <div className="w-2 h-2 bg-green-accent rounded-full mt-2 flex-shrink-0"></div>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
                 <div className="flex gap-2">
                   <Button
                     size="sm"
                     variant="outline"
-                    onClick={() => handleEdit(experience)}
+                    onClick={() => handleEdit(exp)}
                     className="h-8 w-8 p-0"
                   >
                     <Edit size={14} />
@@ -241,21 +378,18 @@ const AdminExperiences = () => {
                   <Button
                     size="sm"
                     variant="outline"
-                    onClick={() => handleDelete(experience.id)}
+                    onClick={() => handleDelete(exp.id)}
                     className="h-8 w-8 p-0 hover:bg-red-600 hover:border-red-600"
                   >
                     <Trash2 size={14} />
                   </Button>
                 </div>
               </div>
-            </CardHeader>
-            <CardContent className="pt-0">
-              <p className="text-gray-300 text-sm">{experience.description}</p>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         ))}
 
-        {experiences.length === 0 && (
+        {data?.length === 0 && (
           <div className="text-center py-8 text-gray-400">
             Nenhuma experiência cadastrada. Clique em &quot;Nova
             Experiência&quot; para adicionar.

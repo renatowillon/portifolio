@@ -32,7 +32,7 @@ const Testimonials = () => {
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             O que dizem sobre
-            <span className="text-gradient">meu trabalho</span>
+            <span className="text-gradient"> meu trabalho</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             Feedback de colegas, líderes e clientes que tiveram a oportunidade
