@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
+import { Providers } from "@/libs/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,8 +19,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="scroll-smooth">
       <body className="bg-slate-950 text-zinc-100">
-        <Toaster position="bottom-right" expand={false} richColors />
-        {children}
+        <Providers>
+          <Toaster position="bottom-right" expand={false} richColors />
+          {children}
+        </Providers>
       </body>
     </html>
   );

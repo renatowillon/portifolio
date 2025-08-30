@@ -19,3 +19,16 @@ model Projetos {
 
   @@map("projetos")
 }
+
+model Experiencias {
+  id Int @id @default(autoincrement())
+  titulo String
+  empresa String
+  periodo String
+  localizacao String
+  tipo String
+  descricao String[]
+  tecnologias String[]
+
+  @@map("experiencias")
+}
