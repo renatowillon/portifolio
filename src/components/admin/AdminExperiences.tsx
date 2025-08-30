@@ -307,7 +307,7 @@ const AdminExperiences = () => {
         {data?.map((exp: Experiencias, index: any) => (
           <div
             key={index}
-            className="bg-dark-blue rounded-xl p-6 md:p-8  animate-fade-in-up"
+            className="bg-dark-blue rounded-xl p-6 md:p-8 border border-gray-600"
             style={{ animationDelay: `${index * 0.2}s` }}
           >
             <div className="grid md:grid-cols-3 gap-6">

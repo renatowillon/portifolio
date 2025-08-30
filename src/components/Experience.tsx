@@ -1,8 +1,18 @@
 "use client";
-import { experiences } from "@/models/Experience";
+import { fetchExperiencias } from "@/libs/fetchers";
+import { Experiencia } from "@/types/experiencia";
+import { useQuery } from "@tanstack/react-query";
 import { Calendar, MapPin, Code, Briefcase } from "lucide-react";
 
 const Experience = () => {
+  type ExperienciaSemId = Omit<Experiencia, "id">;
+
+  //PEGAR EXPERIENCIA
+  const { data } = useQuery({
+    queryKey: ["experiencia"],
+    queryFn: fetchExperiencias,
+    staleTime: 5 * (60 * 1000),
+  });
   return (
     <section id="experience" className="section-padding">
       <div className="container-custom">
@@ -17,7 +27,7 @@ const Experience = () => {
         </div>
 
         <div className="space-y-8">
-          {experiences.map((exp, index) => (
+          {data?.map((exp: Experiencia, index: any) => (
             <div
               key={index}
               className="bg-navy rounded-xl p-6 md:p-8 card-hover animate-fade-in-up"
@@ -27,30 +37,30 @@ const Experience = () => {
                 <div className="md:col-span-1 space-y-4">
                   <div>
                     <h3 className="text-xl font-bold text-white mb-2">
-                      {exp.title}
+                      {exp.titulo}
                     </h3>
                     <p className="text-green-accent font-medium text-lg">
-                      {exp.company}
+                      {exp.empresa}
                     </p>
                   </div>
 
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-gray-400">
                       <Calendar size={16} />
-                      <span className="text-sm">{exp.period}</span>
+                      <span className="text-sm">{exp.periodo}</span>
                     </div>
                     <div className="flex items-center gap-2 text-gray-400">
                       <MapPin size={16} />
-                      <span className="text-sm">{exp.location}</span>
+                      <span className="text-sm">{exp.localizacao}</span>
                     </div>
                     <div className="flex items-center gap-2 text-gray-400">
                       <Briefcase size={16} />
-                      <span className="text-sm">{exp.type}</span>
+                      <span className="text-sm">{exp.tipo}</span>
                     </div>
                   </div>
 
                   <div className="flex flex-wrap gap-2">
-                    {exp.technologies.map((tech, techIndex) => (
+                    {exp.tecnologias.map((tech, techIndex) => (
                       <span
                         key={techIndex}
                         className="bg-green-accent/10 text-green-accent px-2 py-1 rounded-lg text-xs"
@@ -67,7 +77,7 @@ const Experience = () => {
                     Principais Atividades
                   </h4>
                   <ul className="space-y-3">
-                    {exp.description.map((item, itemIndex) => (
+                    {exp.descricao.map((item, itemIndex) => (
                       <li
                         key={itemIndex}
                         className="flex items-start gap-3 text-gray-300"
