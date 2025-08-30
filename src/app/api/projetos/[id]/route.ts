@@ -17,7 +17,7 @@ export async function GET(
 //API ATUALIZAR PROJETO
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: number } }
+  { params }: { params: { id: string } }
 ) {
   const id = Number(params.id);
 
