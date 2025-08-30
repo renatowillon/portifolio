@@ -16,8 +16,8 @@ export const initialProjects: Projeto[] = [
       "React Hook Form",
       "Zod",
     ],
+    liveurl: "https://barberio.vercel.app",
     githuburl: "https://github.com/renatowillon/barberio",
-    liveurl: "https://barberio-demo.vercel.app",
     destaque: true,
   },
   {
@@ -37,7 +37,7 @@ export const initialProjects: Projeto[] = [
       "Prisma",
     ],
     githuburl: "https://github.com/renatowillon/finance-ai",
-    liveurl: "https://wfinance-ia.vercel.app/",
+    liveurl: "https://wfinance-ia.vercel.app/login",
     destaque: true,
   },
   {
