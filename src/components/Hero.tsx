@@ -23,16 +23,14 @@ const Hero = () => {
               </p>
               <h1 className="text-4xl md:text-6xl font-bold leading-tight">
                 Desenvolvedor
-                <span className="text-gradient"> Front-End</span>
-
-
+                <span className="text-gradient"> FullStack</span>
                 <br />
                 &lt;/&gt;
-
               </h1>
               <p className="text-xl text-gray-400 max-w-lg">
-                Criando experiências digitais incríveis com React, Next.js e
-                TypeScript. Apaixonado por código limpo e interfaces elegantes.
+                Criando experiências digitais incríveis com React, Next.js,
+                TypeScript, Node e Java. Apaixonado por código limpo e
+                interfaces elegantes.
               </p>
             </div>
 
