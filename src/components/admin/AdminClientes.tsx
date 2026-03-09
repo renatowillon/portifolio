@@ -1,9 +1,9 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Dialog,
   DialogContent,
@@ -12,158 +12,167 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import {
+  Plus,
+  Edit,
+  Trash2,
+  ExternalLink,
+  Github,
+  DivideSquare,
+} from "lucide-react";
+import { Projeto, ProjetoInput } from "@/types/projetos";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  atualizarProjeto,
+  criarProjeto,
+  deletarProjeto,
+  fetchProjetos,
+} from "@/libs/fetchers";
+import { Switch } from "../ui/switch";
 
-/* =======================
-   Types
-======================= */
-
-enum StatusPagamento {
-  ativo = "ativo",
-  inadimplente = "inadimplente",
-  cancelado = "cancelado",
-}
-
-interface Cliente {
-  id: string;
-  createdAt: string;
-  nome: string;
-  responsavel: string;
-  telefone: string;
-  primeiro_contrato: string;
-  validade: string;
-  status_pagamento: StatusPagamento;
-  ultima_atualizacao: string;
-}
-
-/* =======================
-   Component
-======================= */
-
-const AdminClientes = () => {
-  const [clientes, setClientes] = useState<Cliente[]>([]);
-  const [editingCliente, setEditingCliente] = useState<Cliente | null>(null);
+const AdminProjects = () => {
+  const [editingProject, setEditingProject] = useState<Projeto | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-
   const [formData, setFormData] = useState({
-    nome: "",
-    responsavel: "",
-    telefone: "",
-    primeiro_contrato: "",
-    validade: "",
-    status_pagamento: StatusPagamento.ativo,
+    name: "",
+    description: "",
+    image: "",
+    technologies: "",
+    githubUrl: "",
+    liveUrl: "",
+    destaque: false,
   });
 
-  /* =======================
-     Storage
-  ======================= */
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["projetos"],
+    queryFn: fetchProjetos,
+    staleTime: 5 * (60 * 1000), //5 minutos
+  });
 
-  useEffect(() => {
-    const stored = localStorage.getItem("clientes");
-    if (stored) setClientes(JSON.parse(stored));
-  }, []);
+  const queryClient = useQueryClient();
 
-  const saveClientes = (data: Cliente[]) => {
-    localStorage.setItem("clientes", JSON.stringify(data));
-    setClientes(data);
-  };
+  const criarMutation = useMutation({
+    mutationFn: criarProjeto,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["projetos"] }),
+    onError: (error) => {
+      console.error("Erro ao criar projeto:", error);
+    },
+  });
 
-  /* =======================
-     Actions
-  ======================= */
+  const atualizarMutation = useMutation({
+    mutationFn: ({ id, projeto }: { id: number; projeto: Projeto }) =>
+      atualizarProjeto(id, projeto),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["projetos"] }),
+    onError: (error) => {
+      console.error("Erro ao atualizar projeto:", error);
+    },
+  });
+
+  const deletarMutation = useMutation({
+    mutationFn: deletarProjeto,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["projetos"] }),
+    onError: (error) => {
+      console.error("Erro ao deletar projeto:", error);
+    },
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const now = new Date().toISOString();
-
-    const clienteData: Cliente = {
-      id: editingCliente?.id || Date.now().toString(),
-      createdAt: editingCliente?.createdAt || now,
-      ultima_atualizacao: now,
-      nome: formData.nome,
-      responsavel: formData.responsavel,
-      telefone: formData.telefone,
-      primeiro_contrato: formData.primeiro_contrato,
-      validade: formData.validade,
-      status_pagamento: formData.status_pagamento,
+    const projectData: ProjetoInput = {
+      nome: formData.name,
+      descricao: formData.description,
+      imagem:
+        formData.image ||
+        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop",
+      tecnologias: formData.technologies
+        .split(",")
+        .map((tech) => tech.trim())
+        .filter(Boolean),
+      githuburl: formData.githubUrl,
+      liveurl: formData.liveUrl,
+      destaque: formData.destaque,
     };
 
-    if (editingCliente) {
-      saveClientes(
-        clientes.map((c) => (c.id === editingCliente.id ? clienteData : c)),
-      );
+    if (editingProject) {
+      atualizarMutation.mutate({
+        id: editingProject.id!,
+        projeto: projectData,
+      });
     } else {
-      saveClientes([...clientes, clienteData]);
+      criarMutation.mutate(projectData);
     }
 
     resetForm();
   };
 
-  const handleEdit = (cliente: Cliente) => {
-    setEditingCliente(cliente);
+  const handleEdit = (project: Projeto) => {
+    setEditingProject(project);
     setFormData({
-      nome: cliente.nome,
-      responsavel: cliente.responsavel,
-      telefone: cliente.telefone,
-      primeiro_contrato: cliente.primeiro_contrato,
-      validade: cliente.validade,
-      status_pagamento: cliente.status_pagamento,
+      name: project.nome,
+      description: project.descricao,
+      image: project.imagem,
+      technologies: project.tecnologias.join(", "),
+      githubUrl: project.githuburl,
+      liveUrl: project.liveurl,
+      destaque: project.destaque,
     });
     setIsDialogOpen(true);
   };
 
-  const handleDelete = (id: string) => {
-    if (confirm("Tem certeza que deseja excluir este cliente?")) {
-      saveClientes(clientes.filter((c) => c.id !== id));
+  const handleDelete = (id: number) => {
+    if (confirm("Tem certeza que deseja excluir este projeto?")) {
+      deletarMutation.mutate(id);
     }
   };
 
   const resetForm = () => {
     setFormData({
-      nome: "",
-      responsavel: "",
-      telefone: "",
-      primeiro_contrato: "",
-      validade: "",
-      status_pagamento: StatusPagamento.ativo,
+      name: "",
+      description: "",
+      image: "",
+      technologies: "",
+      githubUrl: "",
+      liveUrl: "",
+      destaque: false,
     });
-    setEditingCliente(null);
+    setEditingProject(null);
     setIsDialogOpen(false);
   };
 
-  /* =======================
-     Render
-  ======================= */
-
   return (
     <div className="space-y-6">
-      {/* New Client Button */}
+      {/* Add New Project Button */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogTrigger asChild>
-          <Button className="bg-green-accent hover:bg-green-600 text-white">
+          <Button
+            onClick={resetForm}
+            className="bg-green-accent hover:bg-green-600 text-white"
+          >
             <Plus size={18} className="mr-2" />
-            Novo Cliente
+            Novo Projeto
           </Button>
         </DialogTrigger>
 
         <DialogContent className="sm:max-w-2xl bg-navy border-gray-700">
           <DialogHeader>
             <DialogTitle className="text-green-accent">
-              {editingCliente ? "Editar Cliente" : "Novo Cliente"}
+              {editingProject ? "Editar Projeto" : "Novo Projeto"}
             </DialogTitle>
           </DialogHeader>
 
-          {/* FORM */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label className="text-gray-300">Nome</Label>
+                <Label htmlFor="name" className="text-gray-300">
+                  Nome
+                </Label>
                 <Input
-                  value={formData.nome}
+                  id="name"
+                  value={formData.name}
                   onChange={(e) =>
-                    setFormData({ ...formData, nome: e.target.value })
+                    setFormData({ ...formData, name: e.target.value })
                   }
                   className="bg-dark-blue border-gray-600 text-white"
                   required
@@ -171,85 +180,93 @@ const AdminClientes = () => {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-gray-300">Responsável</Label>
+                <Label htmlFor="image" className="text-gray-300">
+                  URL da Imagem
+                </Label>
                 <Input
-                  value={formData.responsavel}
+                  id="image"
+                  value={formData.image}
                   onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      responsavel: e.target.value,
-                    })
+                    setFormData({ ...formData, image: e.target.value })
                   }
                   className="bg-dark-blue border-gray-600 text-white"
-                  required
+                  placeholder="https://..."
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label className="text-gray-300">Telefone</Label>
-                <Input
-                  value={formData.telefone}
-                  onChange={(e) =>
-                    setFormData({ ...formData, telefone: e.target.value })
-                  }
-                  className="bg-dark-blue border-gray-600 text-white"
-                  required
-                />
-              </div>
+            <div className="space-y-2">
+              <Label htmlFor="description" className="text-gray-300">
+                Descrição
+              </Label>
+              <Textarea
+                id="description"
+                value={formData.description}
+                onChange={(e) =>
+                  setFormData({ ...formData, description: e.target.value })
+                }
+                className="bg-dark-blue border-gray-600 text-white"
+                required
+              />
+            </div>
 
-              <div className="space-y-2">
-                <Label className="text-gray-300">Status</Label>
-                <select
-                  value={formData.status_pagamento}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      status_pagamento: e.target.value as StatusPagamento,
-                    })
-                  }
-                  className="w-full h-10 rounded-md bg-dark-blue border border-gray-600 text-white px-3"
-                >
-                  <option value="ativo">Ativo</option>
-                  <option value="inadimplente">Inadimplente</option>
-                  <option value="cancelado">Cancelado</option>
-                </select>
-              </div>
+            <div className="space-y-2">
+              <Label htmlFor="technologies" className="text-gray-300">
+                Tecnologias (separadas por vírgula)
+              </Label>
+              <Input
+                id="technologies"
+                value={formData.technologies}
+                onChange={(e) =>
+                  setFormData({ ...formData, technologies: e.target.value })
+                }
+                className="bg-dark-blue border-gray-600 text-white"
+                placeholder="React, TypeScript, TailwindCSS"
+                required
+              />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label className="text-gray-300">Primeiro contrato</Label>
+                <Label htmlFor="githubUrl" className="text-gray-300">
+                  GitHub URL
+                </Label>
                 <Input
-                  type="date"
-                  value={formData.primeiro_contrato}
+                  id="githubUrl"
+                  value={formData.githubUrl}
                   onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      primeiro_contrato: e.target.value,
-                    })
+                    setFormData({ ...formData, githubUrl: e.target.value })
                   }
                   className="bg-dark-blue border-gray-600 text-white"
-                  required
+                  placeholder="https://github.com/..."
                 />
               </div>
 
               <div className="space-y-2">
-                <Label className="text-gray-300">Validade</Label>
+                <Label htmlFor="liveUrl" className="text-gray-300">
+                  Demo URL
+                </Label>
                 <Input
-                  type="date"
-                  value={formData.validade}
+                  id="liveUrl"
+                  value={formData.liveUrl}
                   onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      validade: e.target.value,
-                    })
+                    setFormData({ ...formData, liveUrl: e.target.value })
                   }
                   className="bg-dark-blue border-gray-600 text-white"
-                  required
+                  placeholder="https://..."
                 />
               </div>
+            </div>
+            <div className="flex items-center justify-end gap-4">
+              <Switch
+                id="destaque"
+                checked={formData.destaque}
+                onCheckedChange={(checked) =>
+                  setFormData({ ...formData, destaque: checked })
+                }
+                className="bg-green-accent text-green-accent "
+              />
+              <Label htmlFor="destaque">Destaque</Label>
             </div>
 
             <div className="flex gap-3 pt-4">
@@ -265,48 +282,32 @@ const AdminClientes = () => {
                 type="submit"
                 className="flex-1 bg-green-accent hover:bg-green-600 text-white"
               >
-                {editingCliente ? "Salvar" : "Criar"}
+                {editingProject ? "Salvar" : "Criar"}
               </Button>
             </div>
           </form>
         </DialogContent>
       </Dialog>
 
-      {/* LISTAGEM */}
+      {/* Projects List */}
       <div className="grid gap-4">
-        {clientes.map((cliente) => (
-          <Card key={cliente.id} className="bg-dark-blue border-gray-600">
+        {data?.map((project: Projeto) => (
+          <Card key={project.id} className="bg-dark-blue border-gray-600">
             <CardHeader className="pb-3">
               <div className="flex items-start justify-between">
-                <div className="flex items-start gap-3">
-                  <Avatar className="w-12 h-12">
-                    <AvatarFallback className="bg-green-accent text-white">
-                      {cliente.nome
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                    </AvatarFallback>
-                  </Avatar>
-
-                  <div>
-                    <CardTitle className="text-white text-lg">
-                      {cliente.nome}
-                    </CardTitle>
-                    <p className="text-green-accent font-medium">
-                      {cliente.responsavel}
-                    </p>
-                    <p className="text-gray-400 text-sm">{cliente.telefone}</p>
-                    <p className="text-gray-400 text-xs capitalize">
-                      Status: {cliente.status_pagamento}
-                    </p>
-                  </div>
+                <div>
+                  <CardTitle className="text-white text-lg">
+                    {project.nome}
+                  </CardTitle>
+                  <p className="text-gray-400 text-sm mt-1">
+                    {project.descricao}
+                  </p>
                 </div>
-
                 <div className="flex gap-2">
                   <Button
                     size="sm"
                     variant="outline"
-                    onClick={() => handleEdit(cliente)}
+                    onClick={() => handleEdit(project)}
                     className="h-8 w-8 p-0"
                   >
                     <Edit size={14} />
@@ -314,20 +315,65 @@ const AdminClientes = () => {
                   <Button
                     size="sm"
                     variant="outline"
-                    onClick={() => handleDelete(cliente.id)}
-                    className="h-8 w-8 p-0 hover:bg-red-600 hover:border-red-600"
+                    onClick={() => handleDelete(Number(project.id))}
+                    className="h-8 w-8 p-0 hover:text-white hover:bg-red-500 hover:border-red-500"
                   >
                     <Trash2 size={14} />
                   </Button>
                 </div>
               </div>
             </CardHeader>
+            <CardContent className="pt-0">
+              <div className="flex flex-wrap gap-2 mb-3">
+                {project.tecnologias.map((tech: any, index: any) => (
+                  <Badge
+                    key={index}
+                    variant="secondary"
+                    className="bg-navy text-green-accent"
+                  >
+                    {tech}
+                  </Badge>
+                ))}
+              </div>
+              <div className="flex items-center justify-between gap-3 text-sm">
+                <div className="flex gap-3">
+                  {project.githuburl && (
+                    <a
+                      href={project.githuburl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-green-accent flex items-center gap-1"
+                    >
+                      <Github size={14} />
+                      GitHub
+                    </a>
+                  )}
+                  {project.liveurl && (
+                    <a
+                      href={project.liveurl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-green-accent flex items-center gap-1"
+                    >
+                      <ExternalLink size={14} />
+                      Demo
+                    </a>
+                  )}
+                </div>
+
+                {project.destaque && (
+                  <div className="bg-green-accent text-white px-2 py-1 self-end rounded-full text-xs font-medium">
+                    Destaque
+                  </div>
+                )}
+              </div>
+            </CardContent>
           </Card>
         ))}
 
-        {clientes.length === 0 && (
+        {data?.length === 0 && (
           <div className="text-center py-8 text-gray-400">
-            Nenhum cliente cadastrado. Clique em &quot;Novo Cliente&quot; para
+            Nenhum projeto cadastrado. Clique em &quot;Novo Projeto&quot; para
             adicionar.
           </div>
         )}
@@ -336,4 +382,4 @@ const AdminClientes = () => {
   );
 };
 
-export default AdminClientes;
+export default AdminProjects;

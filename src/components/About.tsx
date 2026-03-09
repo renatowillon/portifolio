@@ -9,6 +9,8 @@ const About = () => {
     { name: "TailwindCSS", level: 89 },
     { name: "JavaScript", level: 86 },
     { name: "HTML/CSS", level: 95 },
+    { name: "NodeJs", level: 80 },
+    { name: "Java", level: 75 },
   ];
 
   const traits = [
@@ -40,7 +42,7 @@ const About = () => {
             Sobre <span className="text-gradient">Mim</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Desenvolvedor front-end apaixonado por criar experiências digitais
+            Desenvolvedor full-stack apaixonado por criar experiências digitais
             que fazem a diferença
           </p>
         </div>
@@ -48,11 +50,12 @@ const About = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-6 animate-fade-in-up">
             <p className="text-lg text-gray-300 leading-relaxed">
-              Sou um desenvolvedor front-end com uma paixão genuína por
+              Sou um desenvolvedor full-stack com uma paixão genuína por
               transformar ideias em realidade digital. Minha jornada no
               desenvolvimento começou com curiosidade sobre como os sites
               funcionam, e hoje me especializei em criar interfaces modernas e
-              funcionais usando as tecnologias mais atuais do mercado.
+              funcionais além de SaaS funcionais e escalaveis, usando as
+              tecnologias mais atuais do mercado.
             </p>
 
             <p className="text-lg text-gray-300 leading-relaxed">

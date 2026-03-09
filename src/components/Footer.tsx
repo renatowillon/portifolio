@@ -1,5 +1,5 @@
 "use client";
-import { Heart, Code, Github, Linkedin, Mail } from "lucide-react";
+import { Heart, Github, Linkedin, Mail, Code2 } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -78,6 +78,8 @@ const Footer = () => {
               {[
                 "React",
                 "Next.js",
+                "Node.js",
+                "Java",
                 "TypeScript",
                 "TailwindCSS",
                 "Git",
@@ -99,7 +101,7 @@ const Footer = () => {
             <p className="text-gray-400 text-sm flex items-center gap-2">
               © {currentYear} Renato Willon. Feito com
               <Heart className="text-red-500 fill-current" size={16} />
-              e <Code className="text-green-accent" size={16} />
+              e <Code2 className="text-green-accent" size={16} />
             </p>
             <p className="text-gray-400 text-sm">
               Desenvolvido com React, TypeScript e TailwindCSS
