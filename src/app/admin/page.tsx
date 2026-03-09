@@ -9,16 +9,18 @@ import {
   Award,
   MessageSquare,
   Trophy,
+  User,
 } from "lucide-react";
 
 import AdminProjects from "@/components/admin/AdminProjects";
 
 import AdminCertifications from "@/components/admin/AdminCertifications";
 import AdminTestimonials from "@/components/admin/AdminTestimonials";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import AdminExperiences from "@/components/admin/AdminExperiences";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect } from "react";
+import AdminClientes from "@/components/admin/AdminClientes";
 
 const Admin = () => {
   const router = useRouter();
@@ -61,7 +63,7 @@ const Admin = () => {
 
         {/* Admin Tabs */}
         <Tabs defaultValue="projects" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 mb-8 bg-navy">
+          <TabsList className="grid w-full grid-cols-5 mb-8 bg-navy">
             <TabsTrigger
               value="projects"
               className="flex items-center gap-2 data-[state=active]:bg-green-accent data-[state=active]:text-white"
@@ -89,6 +91,13 @@ const Admin = () => {
             >
               <MessageSquare size={18} />
               Depoimentos
+            </TabsTrigger>
+            <TabsTrigger
+              value="clientes"
+              className="flex items-center gap-2 data-[state=active]:bg-green-accent data-[state=active]:text-white"
+            >
+              <User size={18} />
+              Clientes
             </TabsTrigger>
           </TabsList>
 
@@ -140,6 +149,18 @@ const Admin = () => {
               </CardHeader>
               <CardContent>
                 <AdminTestimonials />
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="clientes">
+            <Card className="bg-navy border-gray-700">
+              <CardHeader>
+                <CardTitle className="text-green-accent">
+                  Gerenciar Clientes
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <AdminClientes />
               </CardContent>
             </Card>
           </TabsContent>
